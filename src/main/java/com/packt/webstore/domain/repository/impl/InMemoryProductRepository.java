@@ -11,7 +11,7 @@ import com.packt.webstore.domain.repository.ProductRepository;
 public class InMemoryProductRepository implements
         ProductRepository{
 
-    private List<Product> listOfProducts = new ArrayList<Product>();
+    private List<Product> listOfProducts = new ArrayList<>();
 
     public InMemoryProductRepository() {
         Product iphone = new Product("P1234","iPhone 5s", new
@@ -48,15 +48,32 @@ public class InMemoryProductRepository implements
 
     @Override
     public List<Product> getProductsByCategory(String category) {
-        List<Product> productsBycategory = new ArrayList<>();
+        List<Product> productsByCategory = new ArrayList<>();
 
         for (Product product :
                 listOfProducts) {
             if (category.equalsIgnoreCase(product.getCategory())){
-                productsBycategory.add(product);
+                productsByCategory.add(product);
             }
         }
-        return productsBycategory;
+        return productsByCategory;
+    }
+
+    @Override
+    public Set<Product> getProductsByPriceFilter(Map<String, List<String>> priceRange) {
+        Set<Product> productsByPriceFilter = new HashSet<>();
+
+        BigDecimal lowPrice = new BigDecimal(priceRange.get("low").get(0));
+        BigDecimal highPrice = new BigDecimal(priceRange.get("high").get(0));
+
+        for (Product product :
+                listOfProducts) {
+            if(product.getUnitPrice().compareTo(lowPrice)>=0&&
+                    product.getUnitPrice().compareTo(highPrice)<=0){
+                productsByPriceFilter.add(product);
+            }
+        }
+        return productsByPriceFilter;
     }
 
     public Product getProductById(String productId) {
@@ -104,5 +121,18 @@ public class InMemoryProductRepository implements
         productsByCategory.retainAll(productsByBrand);
 
         return productsByCategory;
+    }
+
+    @Override
+    public Set<Product> getProductsByManufacturer(String manufacturer) {
+        Set<Product> productsByManufacturer = new HashSet<>();
+
+        for (Product product :
+                listOfProducts) {
+            if (manufacturer.equalsIgnoreCase(product.getManufacturer())){
+                productsByManufacturer.add(product);
+            }
+        }
+        return productsByManufacturer;
     }
 }
