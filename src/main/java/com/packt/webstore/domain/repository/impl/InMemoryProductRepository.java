@@ -42,6 +42,8 @@ public class InMemoryProductRepository implements
         listOfProducts.add(laptop_dell);
         listOfProducts.add(tablet_Nexus);
     }
+
+    @Override
     public List<Product> getAllProducts() {
         return listOfProducts;
     }
@@ -76,6 +78,7 @@ public class InMemoryProductRepository implements
         return productsByPriceFilter;
     }
 
+    @Override
     public Product getProductById(String productId) {
         Product productById = null;
 

@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: konstr6
-  Date: 07.09.2016
-  Time: 16:35
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -13,9 +7,7 @@
 <head>
     <meta http-equiv="Content-Type" content=
             "text/html; charset=ISO-8859-1">
-    <link rel="stylesheet"
-          href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/
- bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <title>Products</title>
 </head>
 <body>
@@ -40,18 +32,15 @@
                         <spring:message code="AbstractUserDetailsAuthenticationProvider.badCredentials"/><br />
                     </div>
                     </c:if>
-                    <form action="<c:url value=
- "/j_spring_security_check"></c:url>" method=
-                            "post">
+                    <form action="<c:url value="/j_spring_security_check"></c:url>" method="post">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder=
-                                        "User Name" name='j_username' type="text">
+                                <input class="form-control" placeholder="User Name"
+                                       name='j_username' type="text">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder=
-                                        "Password" name='j_password' type=
-                                               "password" value="">
+                                <input class="form-control" placeholder="Password" name='j_password'
+                                       type="password" value="">
                             </div>
                             <input class="btn btn-lg btn-success btn-block"
                                    type="submit" value="Login">
