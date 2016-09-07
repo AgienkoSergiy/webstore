@@ -135,4 +135,9 @@ public class InMemoryProductRepository implements
         }
         return productsByManufacturer;
     }
+
+    @Override
+    public void addProduct(Product product) {
+        listOfProducts.add(product);
+    }
 }
