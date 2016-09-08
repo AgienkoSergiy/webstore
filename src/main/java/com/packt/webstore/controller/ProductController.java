@@ -10,7 +10,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -82,18 +85,48 @@ public class ProductController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddNewProductForm(
-            @ModelAttribute("newProduct") Product newProduct, BindingResult result) {
+            @ModelAttribute("newProduct") Product newProduct,
+            BindingResult result, HttpServletRequest request) {
+
         String[] suppressedFields = result.getSuppressedFields();
+
         if (suppressedFields.length > 0) {
             throw new RuntimeException("Attempting to bind disallowed fields: " +
                     StringUtils.arrayToCommaDelimitedString(suppressedFields));
         }
+
+        MultipartFile productImage = newProduct.getProductImage();
+        //MultipartFile productManual = newProduct.getProductManual();
+        String rootDirectory =request.getSession().getServletContext().getRealPath("/");
+
+        if (productImage!=null && !productImage.isEmpty()) {
+            try {
+                productImage.transferTo(new File(rootDirectory+"resources\\images\\"+
+                        newProduct.getProductId() + ".png"));
+            } catch (Exception e) {
+                throw new RuntimeException("Product Image saving failed",
+                        e);
+            }
+        }
+
+       /* if (productManual!=null && !productManual.isEmpty()) {
+            try {
+                productManual.transferTo(new File(rootDirectory+"resources\\pdf\\"+
+                        newProduct.getProductId() + ".pdf"));
+            } catch (Exception e) {
+                throw new RuntimeException("Product Manual saving failed", e);
+            }
+        }*/
+
         productService.addProduct(newProduct);
         return "redirect:/products";
     }
 
     @InitBinder
     public void initialiseBinder(WebDataBinder binder) {
+        binder.setAllowedFields("productId",
+                "name","unitPrice","description","manufacturer",
+                "category","unitsInStock", "productImage", "condition", "productManual");
         binder.setDisallowedFields("unitsInOrder", "discontinued");
     }
 
