@@ -46,6 +46,12 @@
                     </span> Order Now
                 </a>
             </p>
+            <p>
+                <a href="<spring:url value="/resources/pdf/${product.productId}.pdf" />"
+                   target="_blank" class="btn btndefault">
+                    <span class="glyphicon glyphicon-eye-open"></span> View manual
+                </a>
+            </p>
         </div>
     </div>
 </section>
