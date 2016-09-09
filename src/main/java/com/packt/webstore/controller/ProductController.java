@@ -2,6 +2,8 @@ package com.packt.webstore.controller;
 
 
 import com.packt.webstore.domain.Product;
+import com.packt.webstore.exception.NoProductsFoundUnderCategoryException;
+import com.packt.webstore.exception.ProductNotFoundException;
 import com.packt.webstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -46,7 +49,14 @@ public class ProductController {
     @RequestMapping("/{category}")
     public String getProductsByCategory(Model model,
                                         @PathVariable("category") String productCategory){
-        model.addAttribute("products",productService.getProductsByCategory(productCategory));
+
+        List<Product> products = productService.getProductsByCategory(productCategory);
+
+        if (products == null || products.isEmpty()) {
+            throw new NoProductsFoundUnderCategoryException();
+        }
+
+        model.addAttribute("products",products);
         return "products";
     }
 
@@ -121,12 +131,28 @@ public class ProductController {
         return "redirect:/products";
     }
 
+    @RequestMapping("/invalidPromoCode")
+    public String invalidPromoCode() {
+        return "invalidPromoCode";
+    }
+
     @InitBinder
     public void initialiseBinder(WebDataBinder binder) {
         binder.setAllowedFields("productId",
                 "name","unitPrice","description","manufacturer",
-                "category","unitsInStock", "productImage", "condition", "productManual");
+                "category","unitsInStock", "productImage", "condition", "productManual", "language");
         binder.setDisallowedFields("unitsInOrder", "discontinued");
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ModelAndView handleError(HttpServletRequest req,
+                                    ProductNotFoundException exception) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("invalidProductId", exception.getProductId());
+        mav.addObject("exception", exception);
+        mav.addObject("url", req.getRequestURL()+"?"+req.getQueryString());
+        mav.setViewName("productNotFound");
+        return mav;
     }
 
 }

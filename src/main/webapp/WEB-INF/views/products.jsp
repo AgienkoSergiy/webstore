@@ -19,8 +19,7 @@
 <section class="container">
     <div class="row">
         <c:forEach items="${products}" var="product">
-            <div class="col-sm-6 col-md-3" style="padding-bottom:
-15px">
+            <div class="col-sm-6 col-md-3" style="padding-bottom:15px">
                 <div class="thumbnail">
                     <img src="<c:url value="/resources/images/${product.productId}.png"></c:url>"
                          alt="image" style = "width:100%"/>
