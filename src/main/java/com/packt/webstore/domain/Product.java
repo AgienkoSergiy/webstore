@@ -1,6 +1,8 @@
 package com.packt.webstore.domain;
 
+import com.packt.webstore.validator.ProductId;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
@@ -11,20 +13,27 @@ import java.math.BigDecimal;
 @XmlRootElement
 public class Product {
 
+
     @Pattern(regexp="P[0-9]+", message="{Pattern.Product.productId.validation}")
+    @ProductId
     private String productId;
 
     @Size(min=4, max=50, message="{Size.Product.name.validation}")
     private String name;
 
-    @Min(value=0, message="Min.Product.unitPrice.validation}")
+    @Min(value=0, message="{Min.Product.unitPrice.validation}")
     @Digits(integer=8, fraction=2, message="{Digits.Product.unitPrice.validation}")
-    @NotNull(message= "{NotNull.Product.unitPrice.validation}")
+    @NotNull(message="{NotNull.Product.unitPrice.validation}")
     private BigDecimal unitPrice;
 
     private String description;
+
+    @NotEmpty(message = "{NotEmpty.Product.manufacturer.validation}")
     private String manufacturer;
+
+    @NotEmpty(message = "{NotEmpty.Product.category.validation}")
     private String category;
+
     private long unitsInStock;
     private long unitsInOrder;
     private boolean discontinued;
