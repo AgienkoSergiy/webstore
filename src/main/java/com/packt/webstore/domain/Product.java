@@ -1,5 +1,6 @@
 package com.packt.webstore.domain;
 
+import com.packt.webstore.validator.Category;
 import com.packt.webstore.validator.ProductId;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -32,6 +33,7 @@ public class Product {
     private String manufacturer;
 
     @NotEmpty(message = "{NotEmpty.Product.category.validation}")
+    @Category
     private String category;
 
     private long unitsInStock;
