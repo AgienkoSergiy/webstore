@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Product> getProductByCategory(String category) {
+    public List<Product> getProductsByCategory(String category) {
         return productRepository.getProductsByCategory(category);
     }
 
@@ -33,5 +33,20 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product getProductById(String productId){
         return productRepository.getProductById(productId);
+    }
+
+    @Override
+    public Set<Product> getProductByManufacturer(String manufacturer) {
+        return productRepository.getProductsByManufacturer(manufacturer);
+    }
+
+    @Override
+    public Set<Product> getProductByPriceFilter(Map<String, List<String>> priceRange) {
+        return productRepository.getProductsByPriceFilter(priceRange);
+    }
+
+    @Override
+    public void addProduct(Product product) {
+        productRepository.addProduct(product);
     }
 }

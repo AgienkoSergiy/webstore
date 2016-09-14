@@ -1,19 +1,52 @@
 package com.packt.webstore.domain;
 
+import com.packt.webstore.validator.Category;
+import com.packt.webstore.validator.ProductId;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.constraints.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.math.BigDecimal;
 
-
+@XmlRootElement
 public class Product {
+
+
+    @Pattern(regexp="P[0-9]+", message="{Pattern.Product.productId.validation}")
+    @ProductId
     private String productId;
+
+    @Size(min=4, max=50, message="{Size.Product.name.validation}")
     private String name;
+
+    @Min(value=0, message="{Min.Product.unitPrice.validation}")
+    @Digits(integer=8, fraction=2, message="{Digits.Product.unitPrice.validation}")
+    @NotNull(message="{NotNull.Product.unitPrice.validation}")
     private BigDecimal unitPrice;
+
     private String description;
+
+    @NotEmpty(message = "{NotEmpty.Product.manufacturer.validation}")
     private String manufacturer;
+
+    @NotEmpty(message = "{NotEmpty.Product.category.validation}")
+    @Category
     private String category;
+
     private long unitsInStock;
     private long unitsInOrder;
     private boolean discontinued;
     private String condition;
+    @JsonIgnore
+    private MultipartFile productImage;
+    @JsonIgnore
+    private MultipartFile productManual;
+
+
+
     public Product() {
         super();
     }
@@ -103,6 +136,22 @@ public class Product {
     public void setCondition(String condition) {
         this.condition = condition;
     }
+    @XmlTransient
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
+    }
+    @XmlTransient
+    public MultipartFile getProductManual() {
+        return productManual;
+    }
+
+    public void setProductManual(MultipartFile productManual) {
+        this.productManual = productManual;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -130,7 +179,6 @@ public class Product {
     }
     @Override
     public String toString() {
-        return "Product [productId=" + productId + ", name=" + name +
-                "]";
+        return "Product [productId=" + productId + ", name=" + name + "]";
     }
 }
