@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="webstore:war">
+  <artifact type="war" build-on-make="true" name="webstore:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="webstore-1.0.war">
       <element id="artifact" artifact-name="webstore:war exploded" />
