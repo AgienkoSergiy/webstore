@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <title>Products</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-    <script src="/webstore/resource/js/controllers.js"></script>
+    <script src="/webstore/resources/js/controllers.js"></script>
 </head>
 <body>
 <section>
@@ -56,9 +56,9 @@
                     View Cart
                 </a>
                 <a href="#" class="btn btn-warning btn-small"
-                   ngclick="addToCart('${product.productId}')">
-                    <span class="glyphicon-shopping-cart glyphicon">
-                    </span> <spring:message code="product.orderNow"/>
+                   ng-click="addToCart('${product.productId}')">
+                    <span class="glyphicon-shopping-cart glyphicon"></span>
+                    <spring:message code="product.orderNow"/>
                 </a>
             </p>
             <p>
