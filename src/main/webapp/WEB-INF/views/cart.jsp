@@ -21,10 +21,10 @@
     </div>
 </section>
 <section class="container" ng-app="cartApp">
-    <div ng-controller="cartCtrl" nginit="initCartId('${cartId}')">
+    <div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')">
         <div>
-            <a class="btn btn-danger pull-left" ng-click="clearCart()"> <span
-                    class="glyphicon glyphicon-remove-sign"></span>
+            <a class="btn btn-danger pull-left" ng-click="clearCart()">
+                <span class="glyphicon glyphicon-remove-sign"></span>
                 Clear Cart
             </a> <a href="#" class="btn btn-success pull-right">
             <span class="glyphicon-shopping-cart glyphicon"></span>
@@ -44,7 +44,7 @@
                 <td>{{item.product.unitPrice}}</td>
                 <td>{{item.quantity}}</td>
                 <td>{{item.totalPrice}}</td>
-                <td><a href="#" class="label label-danger" ngclick="removeFromCart(item.product.productId)">
+                <td><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)">
                     <span class="glyphicon glyphicon-remove" /></span> Remove
                 </a></td>
             </tr>
