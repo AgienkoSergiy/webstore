@@ -28,4 +28,30 @@ public class InMemoryCustomerRepository implements CustomerRepository {
     public List<Customer> getAllCustomers() {
         return customersList;
     }
+
+    @Override
+    public void saveCustomer(Customer customer) {
+        customersList.add(customer);
+    }
+
+    @Override
+    public Customer getCustomer(String customerId) {
+        for (Customer customer:
+             customersList) {
+            if(customer.getCustomerId().equals(customerId))
+                return customer;
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean isCustomerExist(String customerId) {
+
+        for (Customer customer :
+                customersList) {
+         if(customer.getCustomerId().equals(customerId))
+             return true;
+        }
+        return false;
+    }
 }
