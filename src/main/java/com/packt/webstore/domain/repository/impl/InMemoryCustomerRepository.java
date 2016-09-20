@@ -16,9 +16,9 @@ public class InMemoryCustomerRepository implements CustomerRepository {
 
     public InMemoryCustomerRepository(){
 
-        Customer misha = new Customer("C0001","Misha","Helsinki");
-        Customer vasya = new Customer("C0002", "Vasya", "Mena");
-        Customer kolya = new Customer("C0003", "Kolya", "Altep");
+        Customer misha = new Customer("C0001","Misha");
+        Customer vasya = new Customer("C0002", "Vasya");
+        Customer kolya = new Customer("C0003", "Kolya");
 
         customersList.add(misha);
         customersList.add(vasya);
@@ -27,5 +27,39 @@ public class InMemoryCustomerRepository implements CustomerRepository {
 
     public List<Customer> getAllCustomers() {
         return customersList;
+    }
+
+    @Override
+    public void saveCustomer(Customer customer) {
+        for (Customer user :
+                customersList) {
+            if (user.getCustomerId().equals(customer.getCustomerId())){
+                customersList.set(customersList.indexOf(user),customer);
+                System.out.println(customersList.get(customersList.indexOf(user)));
+                return;
+            }
+        }
+        customersList.add(customer);
+    }
+
+    @Override
+    public Customer getCustomer(String customerId) {
+        for (Customer customer:
+             customersList) {
+            if(customer.getCustomerId().equals(customerId))
+                return customer;
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean isCustomerExist(String customerId) {
+
+        for (Customer customer :
+                customersList) {
+         if(customer.getCustomerId().equals(customerId))
+             return true;
+        }
+        return false;
     }
 }
