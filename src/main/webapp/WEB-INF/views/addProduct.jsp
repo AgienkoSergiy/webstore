@@ -4,6 +4,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
+<!--todo delete needless comments-->
+
+
 
 <html>
 <head>
@@ -14,8 +17,9 @@
     <title>Products</title>
 </head>
 <body>
+
 <section>
-    <div class="jumbotron">
+    <div>
         <a href="<c:url value="/j_spring_security_logout" />"
            class="btn btn-danger btn-mini pull-right">logout</a>
         <div class="pull-right" style="padding-right:50px">
@@ -27,6 +31,8 @@
         </div>
     </div>
 </section>
+
+
 <section class="container">
     <form:form modelAttribute="newProduct" class="form-horizontal" enctype="multipart/form-data">
         <form:errors path="*" cssClass="alert alert-danger" element="div"/>

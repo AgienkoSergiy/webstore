@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<!--todo delete needless comments-->
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -8,6 +11,7 @@
     <title>Products</title>
 </head>
 <body>
+<!--
 <section>
     <div class="jumbotron">
         <div class="container">
@@ -15,7 +19,7 @@
             <p>All the available products in our store</p>
         </div>
     </div>
-</section>
+</section> -->
 <section class="container">
     <div class="row">
         <c:forEach items="${products}" var="product">
