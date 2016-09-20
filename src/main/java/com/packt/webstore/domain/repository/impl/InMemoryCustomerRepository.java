@@ -31,6 +31,14 @@ public class InMemoryCustomerRepository implements CustomerRepository {
 
     @Override
     public void saveCustomer(Customer customer) {
+        for (Customer user :
+                customersList) {
+            if (user.getCustomerId().equals(customer.getCustomerId())){
+                customersList.set(customersList.indexOf(user),customer);
+                System.out.println(customersList.get(customersList.indexOf(user)));
+                return;
+            }
+        }
         customersList.add(customer);
     }
 

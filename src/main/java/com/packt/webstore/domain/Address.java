@@ -98,4 +98,15 @@ public class Address implements Serializable {
     }
 
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "doorNo='" + doorNo + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", areaName='" + areaName + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                '}';
+    }
 }

@@ -18,15 +18,21 @@
 		<transition to="collectCustomerID" />
 	</action-state>
 
+	<!--todo remove redundant moves: collectCustomerId->login move-->
     <view-state id="collectCustomerID" view="collectCustomerID.jsp" model="order">
-        <transition to ="checkCustomerExists"/>
+        <transition on="customerIDCollected" to ="checkCustomerExists"/>
     </view-state>
 
     <decision-state id="checkCustomerExists">
         <if test="customerServiceImpl.isCustomerExist(order.customer.customerId)"
-            then="collectShippingDetail"
+            then="prefillCustomerInfo"
             else="collectCustomerInfo"/>
     </decision-state>
+
+	<action-state id="prefillCustomerInfo">
+		<evaluate expression="customerServiceImpl.getCustomer(order.customer.customerId)" result="order.customer"/>
+		<transition to="collectCustomerInfo"/>
+	</action-state>
 
 	<view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="order">
 		<transition on="customerInfoCollected" to="saveCustomerInfo" />
@@ -41,6 +47,7 @@
 		<transition on="shippingDetailCollected" to="orderConfirmation" />
 		<transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
 	</view-state>
+
 
 	<view-state id="orderConfirmation">
 		<transition on="orderConfirmed" to="processOrder" />
