@@ -35,7 +35,7 @@ public class ProductValidatorTest {
         List errors = bindException.getAllErrors();
 
         for(Object error: errors){
-            System.out.println((ObjectError)error);
+            System.out.println(error);
         }
 
 
@@ -58,7 +58,7 @@ public class ProductValidatorTest {
         List errors = bindException.getAllErrors();
 
         for(Object error: errors){
-            System.out.println((ObjectError)error);
+            System.out.println(error);
         }
         //Assert
         Assert.assertEquals(2, bindException.getErrorCount());
@@ -78,7 +78,7 @@ public class ProductValidatorTest {
         List errors = bindException.getAllErrors();
 
         for(Object error: errors){
-            System.out.println((ObjectError)error);
+            System.out.println(error);
         }
         //Assert
         Assert.assertEquals(1, bindException.getErrorCount());
