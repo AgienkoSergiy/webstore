@@ -1,6 +1,8 @@
 package com.packt.webstore.validator;
 
 import java.math.BigDecimal;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,9 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.validation.BindException;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.ValidationUtils;
 import com.packt.webstore.domain.Product;
-import com.packt.webstore.validator.ProductValidator;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("test-DispatcherServlet-context.xml")
@@ -30,9 +32,16 @@ public class ProductValidatorTest {
         //Act
         ValidationUtils.invokeValidator(productValidator, product, bindException);
 
+        List errors = bindException.getAllErrors();
+
+        for(Object error: errors){
+            System.out.println((ObjectError)error);
+        }
+
+
         //Assert
-        Assert.assertEquals(1, bindException.getErrorCount());
-        Assert.assertTrue(bindException.getLocalizedMessage().contains("Unit price is Invalid. It cannot be empty."));
+        Assert.assertEquals(4, bindException.getErrorCount());
+
     }
 
     @Test
@@ -46,9 +55,13 @@ public class ProductValidatorTest {
         //Act
         ValidationUtils.invokeValidator(productValidator, product, bindException);
 
+        List errors = bindException.getAllErrors();
+
+        for(Object error: errors){
+            System.out.println((ObjectError)error);
+        }
         //Assert
-        Assert.assertEquals(1, bindException.getErrorCount());
-        Assert.assertTrue(bindException.getLocalizedMessage().contains("A product already exists with this product id."));
+        Assert.assertEquals(2, bindException.getErrorCount());
     }
 
     @Test
@@ -62,8 +75,13 @@ public class ProductValidatorTest {
         //Act
         ValidationUtils.invokeValidator(productValidator, product, bindException);
 
+        List errors = bindException.getAllErrors();
+
+        for(Object error: errors){
+            System.out.println((ObjectError)error);
+        }
         //Assert
-        Assert.assertEquals(0, bindException.getErrorCount());
+        Assert.assertEquals(1, bindException.getErrorCount());
     }
 
 }

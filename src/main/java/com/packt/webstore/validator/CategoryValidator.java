@@ -25,6 +25,8 @@ public class CategoryValidator implements ConstraintValidator<Category, String> 
     }
     public boolean isValid(String value, ConstraintValidatorContext context) {
 
+        if(value==null)
+            return false;
         if(!value.isEmpty())
             return allowedCategories.contains(value.toLowerCase());
         return true;
