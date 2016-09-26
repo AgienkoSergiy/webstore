@@ -119,6 +119,13 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
