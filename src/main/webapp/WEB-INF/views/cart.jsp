@@ -2,32 +2,18 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!--todo delete needless comments-->
 
 <html>
 <head>
-    <!--
-  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <link rel="stylesheet"
-        href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
--->
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
     <script src="/webstore/resources/js/controllers.js"></script>
 
-  <title>Cart</title>
+
 
 </head>
 <body>
-<!--
-<section>
-  <div class="jumbotron">
-      <div class="container">
-          <h1>Cart</h1>
-          <p>All the selected products in your cart</p>
-      </div>
-  </div>
-</section>
--->
+
 <section class="container" ng-app="cartApp">
     <div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')">
         <div>

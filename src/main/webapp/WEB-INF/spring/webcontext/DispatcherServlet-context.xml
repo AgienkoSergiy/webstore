@@ -122,13 +122,14 @@
         <property name="flowExecutor" ref="flowExecutor" />
     </bean>
 
-
+<!--
     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
             <list>
-                <value>/WEB-INF/tiles/definitions/tile-definition.xml</value>
+                <value>/WEB-INF/tiles/definitions/tiles.xml</value>
             </list>
         </property>
 
     </bean>
+    -->
 </beans>

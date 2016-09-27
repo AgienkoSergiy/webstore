@@ -1,1 +1,1 @@
-<p>&copy; Company 2014</p>
+<p>&copy; Seeryoga the best 2016</p>

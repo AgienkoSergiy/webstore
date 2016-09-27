@@ -4,12 +4,19 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
+
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/spring/webcontext/security-context.xml
         </param-value>
     </context-param>
+
+    <listener>
+        <listener-class>org.apache.tiles.extras.complete.CompleteAutoloadTilesListener</listener-class>
+    </listener>
+
 
     <listener>
         <listener-class>

@@ -1,17 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<!--todo delete needless comments-->
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <title>Products</title>
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
     <script src="/webstore/resources/js/controllers.js"></script>
-</head>
-<body>
+
 <section>
         <div class="pull-right" style="padding-right:50px">
             <a href="product?id=${product.productId}&language=en" >English</a>|
@@ -72,5 +64,3 @@
         </div>
     </div>
 </section>
-</body>
-</html>
