@@ -92,8 +92,8 @@
 								</c:forEach>
 
 								<tr>
-									<td>�</td>
-									<td>�</td>
+									<td></td>
+									<td></td>
 									<td class="text-right"><h4>
 											<strong>Grand Total</strong>
 										</h4></td>
