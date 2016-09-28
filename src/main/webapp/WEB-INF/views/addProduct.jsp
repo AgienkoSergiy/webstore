@@ -5,17 +5,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
-<html>
-<head>
-    <meta http-equiv="Content-Type" content=
-            "text/html; charset=ISO-8859-1">
-    <link rel="stylesheet"
-          href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <title>Products</title>
-</head>
-<body>
 <section>
-    <div class="jumbotron">
+    <div>
         <a href="<c:url value="/j_spring_security_logout" />"
            class="btn btn-danger btn-mini pull-right">logout</a>
         <div class="pull-right" style="padding-right:50px">
@@ -27,6 +18,8 @@
         </div>
     </div>
 </section>
+
+
 <section class="container">
     <form:form modelAttribute="newProduct" class="form-horizontal" enctype="multipart/form-data">
         <form:errors path="*" cssClass="alert alert-danger" element="div"/>
@@ -135,5 +128,3 @@
     </fieldset>
     </form:form>
 </section>
-</body>
-</html>

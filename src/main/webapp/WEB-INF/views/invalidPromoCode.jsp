@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<!--todo delete needless comments-->
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;
@@ -9,6 +12,7 @@
     <title>Invalid promo code</title>
 </head>
 <body>
+<!--
 <section>
     <div class="jumbotron">
         <div class="container">
@@ -17,6 +21,7 @@
         </div>
     </div>
 </section>
+-->
 <section>
     <div class="container">
         <p>
