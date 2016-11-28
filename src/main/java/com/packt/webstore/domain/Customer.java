@@ -12,7 +12,10 @@ public class Customer implements Serializable {
     private String name;
     private Address billingAddress;
     private String phoneNumber;
-    boolean noOrdersMade;
+    private boolean noOrdersMade;
+    private String email;
+
+
 
     public Customer() {
         super();
@@ -67,6 +70,14 @@ public class Customer implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

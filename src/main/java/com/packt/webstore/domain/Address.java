@@ -12,10 +12,6 @@ public class Address implements Serializable {
     private String state;
     private String country;
     private String zipCode;
-    // add getters and setters for all the fields here.
-    // Override equals and hashCode based on all the fields.
-    // the code for the same is available in the code bundle which
-    // can be downloaded from www.packtpub.com/support
 
 
     public static long getSerialVersionUID() {

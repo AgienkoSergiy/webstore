@@ -14,7 +14,6 @@ public class CartItem implements Serializable {
     private BigDecimal totalPrice;
 
     public CartItem() {
-        // TODO Auto-generated constructor stub
     }
 
     public CartItem(Product product) {

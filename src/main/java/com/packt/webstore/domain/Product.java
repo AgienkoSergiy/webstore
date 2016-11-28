@@ -41,8 +41,6 @@ public class Product implements Serializable {
             6350930334140807514L;
 
     private long unitsInStock;
-    private long unitsInOrder;
-    private boolean discontinued;
     private String condition;
     @JsonIgnore
     private MultipartFile productImage;
@@ -115,22 +113,6 @@ public class Product implements Serializable {
 
     public void setUnitsInStock(long unitsInStock) {
         this.unitsInStock = unitsInStock;
-    }
-
-    public long getUnitsInOrder() {
-        return unitsInOrder;
-    }
-
-    public void setUnitsInOrder(long unitsInOrder) {
-        this.unitsInOrder = unitsInOrder;
-    }
-
-    public boolean isDiscontinued() {
-        return discontinued;
-    }
-
-    public void setDiscontinued(boolean discontinued) {
-        this.discontinued = discontinued;
     }
 
     public String getCondition() {
