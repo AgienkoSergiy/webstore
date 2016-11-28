@@ -40,7 +40,7 @@
 								${order.shippingDetail.name}<br>
 								${order.shippingDetail.shippingAddress.doorNo},${order.shippingDetail.shippingAddress.streetName}
 								<br>
-								${order.shippingDetail.shippingAddress.areaName},${order.shippingDetail.shippingAddress.state}
+								${order.shippingDetail.shippingAddress.regionName},${order.shippingDetail.shippingAddress.state}
 								<br>
 								${order.shippingDetail.shippingAddress.country},${order.shippingDetail.shippingAddress.zipCode}
 								<br>
@@ -60,7 +60,7 @@
 								${order.customer.name}<br>
 								${order.customer.billingAddress.doorNo},${order.customer.billingAddress.streetName}
 								<br>
-								${order.customer.billingAddress.areaName},${order.customer.billingAddress.state}
+								${order.customer.billingAddress.regionName},${order.customer.billingAddress.state}
 								<br>
 								${order.customer.billingAddress.country},${order.customer.billingAddress.zipCode}
 								<br> <abbr title="Phone">P:</abbr>

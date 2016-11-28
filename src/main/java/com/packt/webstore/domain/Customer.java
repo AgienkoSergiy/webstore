@@ -1,25 +1,33 @@
 package com.packt.webstore.domain;
 
 
+import javax.persistence.*;
 import java.io.Serializable;
-
+@Entity
+@Table(name = "user", schema = "webstore")
 public class Customer implements Serializable {
 
+    @Transient
     private static final long  serialVersionUID =
             2284040482222162898L;
 
+    @Id
+    @GeneratedValue
+    private int userID;
+    @Transient
     private String customerId;
     private String name;
+    @Embedded
     private Address billingAddress;
     private String phoneNumber;
-    private boolean noOrdersMade;
+    //private boolean noOrdersMade;
     private String email;
 
 
 
     public Customer() {
         super();
-        this.billingAddress = new Address();
+        this.billingAddress = new Address("1","20","3","4","5","6");
     }
 
     public Customer(String customerId, String name) {
@@ -28,6 +36,14 @@ public class Customer implements Serializable {
         this.name = name;
     }
 
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
     public String getCustomerId() {
         return customerId;
     }
@@ -44,13 +60,13 @@ public class Customer implements Serializable {
         this.name = name;
     }
 
-    public boolean isNoOrdersMade() {
+    /*public boolean isNoOrdersMade() {
         return noOrdersMade;
-    }
+    }*/
 
-    public void setNoOrdersMade(boolean noOrdersMade) {
+    /*public void setNoOrdersMade(boolean noOrdersMade) {
         this.noOrdersMade = noOrdersMade;
-    }
+    }*/
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -101,7 +117,7 @@ public class Customer implements Serializable {
         result = 31 * result + getName().hashCode();
         result = 31 * result + getBillingAddress().hashCode();
         result = 31 * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
-        result = 31 * result + (isNoOrdersMade() ? 1 : 0);
+        //result = 31 * result + (isNoOrdersMade() ? 1 : 0);
         return result;
     }
 }

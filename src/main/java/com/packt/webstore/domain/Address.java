@@ -1,18 +1,40 @@
 package com.packt.webstore.domain;
 
 
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
+
+@Embeddable
 public class Address implements Serializable {
+
+    @Transient
     private static final long serialVersionUID =
             -530086768384258062L;
+
+
     private String doorNo;
     private String streetName;
-    private String areaName;
+    private String regionName;
     private String state;
     private String country;
     private String zipCode;
 
+    public Address(){
+        super();
+    }
+
+    public Address(String doorNo, String streetName,
+                   String regionName, String state,
+                   String country, String zipCode) {
+        this.doorNo = doorNo;
+        this.streetName = streetName;
+        this.regionName = regionName;
+        this.state = state;
+        this.country = country;
+        this.zipCode = zipCode;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -34,12 +56,12 @@ public class Address implements Serializable {
         this.streetName = streetName;
     }
 
-    public String getAreaName() {
-        return areaName;
+    public String getRegionName() {
+        return regionName;
     }
 
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
+    public void setRegionName(String regionName) {
+        this.regionName = regionName;
     }
 
     public String getState() {
@@ -75,7 +97,7 @@ public class Address implements Serializable {
 
         if (!getDoorNo().equals(address.getDoorNo())) return false;
         if (!getStreetName().equals(address.getStreetName())) return false;
-        if (!getAreaName().equals(address.getAreaName())) return false;
+        if (!getRegionName().equals(address.getRegionName())) return false;
         if (!getState().equals(address.getState())) return false;
         if (!getCountry().equals(address.getCountry())) return false;
         return getZipCode().equals(address.getZipCode());
@@ -86,7 +108,7 @@ public class Address implements Serializable {
     public int hashCode() {
         int result = getDoorNo().hashCode();
         result = 31 * result + getStreetName().hashCode();
-        result = 31 * result + getAreaName().hashCode();
+        result = 31 * result + getRegionName().hashCode();
         result = 31 * result + getState().hashCode();
         result = 31 * result + getCountry().hashCode();
         result = 31 * result + getZipCode().hashCode();
@@ -99,7 +121,7 @@ public class Address implements Serializable {
         return "Address{" +
                 "doorNo='" + doorNo + '\'' +
                 ", streetName='" + streetName + '\'' +
-                ", areaName='" + areaName + '\'' +
+                ", regionName='" + regionName + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
                 ", zipCode='" + zipCode + '\'' +
