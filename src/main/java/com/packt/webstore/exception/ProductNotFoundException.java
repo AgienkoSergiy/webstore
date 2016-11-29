@@ -5,13 +5,13 @@ public class ProductNotFoundException
         extends RuntimeException {
 
     private static final long serialVersionUID = -694354952032299587L;
-    private String productId;
+    private Integer productId;
 
-    public ProductNotFoundException(String productId) {
+    public ProductNotFoundException(Integer productId) {
         this.productId = productId;
     }
 
-    public String getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 

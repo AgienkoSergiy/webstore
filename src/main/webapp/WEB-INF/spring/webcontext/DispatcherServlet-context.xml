@@ -132,4 +132,6 @@
 
     </bean>
     -->
+
+    <import resource="hibernate-context.xml" />
 </beans>

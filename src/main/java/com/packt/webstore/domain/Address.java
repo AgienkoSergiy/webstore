@@ -1,8 +1,7 @@
 package com.packt.webstore.domain;
 
 
-import javax.persistence.Embeddable;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -13,12 +12,17 @@ public class Address implements Serializable {
     private static final long serialVersionUID =
             -530086768384258062L;
 
-
+    @Column(name = "DOOR_NUMBER")
     private String doorNo;
+    @Column(name = "STREET_NAME")
     private String streetName;
+    @Column(name = "REGION_NAME")
     private String regionName;
+    @Column(name = "STATE")
     private String state;
+    @Column(name = "COUNTRY")
     private String country;
+    @Column(name = "ZIP_CODE")
     private String zipCode;
 
     public Address(){
@@ -35,6 +39,7 @@ public class Address implements Serializable {
         this.country = country;
         this.zipCode = zipCode;
     }
+
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

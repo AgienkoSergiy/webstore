@@ -1,49 +1,68 @@
 package com.packt.webstore.domain;
 
 import com.packt.webstore.validator.Category;
-import com.packt.webstore.validator.ProductId;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+
 @XmlRootElement
+@Entity
+@Table(name = "PRODUCT")
 public class Product implements Serializable {
 
 
-    @Pattern(regexp="P[0-9]+", message="{Pattern.Product.productId.validation}")
-    @ProductId
-    private String productId;
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue
+    private Integer productId;
+
 
     @Size(min=4, max=50, message="{Size.Product.name.validation}")
+    @Column(name = "NAME")
     private String name;
+
 
     @Min(value=0, message="{Min.Product.unitPrice.validation}")
     @Digits(integer=8, fraction=2, message="{Digits.Product.unitPrice.validation}")
     @NotNull(message="{NotNull.Product.unitPrice.validation}")
+    @Column(name = "PRICE")
     private BigDecimal unitPrice;
 
+    @Column(name = "DESCRIPTION")
     private String description;
 
+
     @NotEmpty(message = "{NotEmpty.Product.manufacturer.validation}")
+    @Column(name = "MANUFACTURER")
     private String manufacturer;
+
 
     @NotEmpty(message = "{NotEmpty.Product.category.validation}")
     @Category
+    @Column(name = "CATEGORY")
     private String category;
 
+    @Transient
     private static final long serialVersionUID =
             6350930334140807514L;
 
+    @Column(name = "UNITS_IN_STOCK")
     private long unitsInStock;
+
+    @Column(name = "_CONDIDION")
     private String condition;
+    @Transient
     @JsonIgnore
     private MultipartFile productImage;
+    @Transient
     @JsonIgnore
     private MultipartFile productManual;
 
@@ -52,18 +71,18 @@ public class Product implements Serializable {
     public Product() {
         super();
     }
-    public Product(String productId, String name, BigDecimal
+    public Product(Integer productId, String name, BigDecimal
             unitPrice) {
         this.productId = productId;
         this.name = name;
         this.unitPrice = unitPrice;
     }
 
-    public String getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 

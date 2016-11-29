@@ -23,7 +23,7 @@ public class OrderServiceImpl implements OrderService{
     private CartService cartService;
 
 
-    public void processOrder(String productId, long quantity) {
+    public void processOrder(Integer productId, long quantity) {
         Product productById = productRepository.getProductById(productId);
 
         if(productById.getUnitsInStock() < quantity){

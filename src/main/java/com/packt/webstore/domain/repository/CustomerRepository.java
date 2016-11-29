@@ -10,7 +10,7 @@ public interface CustomerRepository {
 
     void saveCustomer(Customer customer);
 
-    Customer getCustomer(String customerId);
+    Customer getCustomer(Integer customerId);
 
-    Boolean isCustomerExist(String customerId);
+    Boolean isCustomerExist(Integer customerId);
 }

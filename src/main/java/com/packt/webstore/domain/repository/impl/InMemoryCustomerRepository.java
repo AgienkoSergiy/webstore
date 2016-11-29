@@ -16,9 +16,9 @@ public class InMemoryCustomerRepository implements CustomerRepository {
 
     public InMemoryCustomerRepository(){
 
-        Customer misha = new Customer("C0001","Misha");
-        Customer vasya = new Customer("C0002", "Vasya");
-        Customer kolya = new Customer("C0003", "Kolya");
+        Customer misha = new Customer(1,"Misha");
+        Customer vasya = new Customer(2, "Vasya");
+        Customer kolya = new Customer(3, "Kolya");
 
         customersList.add(misha);
         customersList.add(vasya);
@@ -43,7 +43,7 @@ public class InMemoryCustomerRepository implements CustomerRepository {
     }
 
     @Override
-    public Customer getCustomer(String customerId) {
+    public Customer getCustomer(Integer customerId) {
         for (Customer customer:
              customersList) {
             if(customer.getCustomerId().equals(customerId))
@@ -53,7 +53,7 @@ public class InMemoryCustomerRepository implements CustomerRepository {
     }
 
     @Override
-    public Boolean isCustomerExist(String customerId) {
+    public Boolean isCustomerExist(Integer customerId) {
 
         for (Customer customer :
                 customersList) {

@@ -8,9 +8,13 @@ import java.util.List;
 public interface CustomerService {
     List<Customer> getAllCustomers();
 
-    public void saveCustomer(Customer customer);
+    void addCustomer(Customer customer);
 
-    public Customer getCustomer(String customerId);
+    Customer getCustomer(Integer id);
 
-    public Boolean isCustomerExist(String customerId);
+    void deleteCustomer(Integer id);
+
+    Boolean isCustomerExist(Integer id);
+
+    void editCustomerInfo(Customer customer);
 }

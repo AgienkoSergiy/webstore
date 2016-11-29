@@ -4,7 +4,7 @@ package com.packt.webstore.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
-@Table(name = "user", schema = "webstore")
+@Table(name = "USER")
 public class Customer implements Serializable {
 
     @Transient
@@ -12,43 +12,37 @@ public class Customer implements Serializable {
             2284040482222162898L;
 
     @Id
+    @Column(name = "ID")
     @GeneratedValue
-    private int userID;
-    @Transient
-    private String customerId;
+    private Integer customerId;
+    @Column(name = "NAME")
     private String name;
     @Embedded
     private Address billingAddress;
+    @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
     //private boolean noOrdersMade;
+    @Column(name = "EMAIL")
     private String email;
 
 
 
     public Customer() {
         super();
-        this.billingAddress = new Address("1","20","3","4","5","6");
+        this.billingAddress = new Address();
     }
 
-    public Customer(String customerId, String name) {
+    public Customer(Integer customerId, String name) {
         this();
         this.customerId = customerId;
         this.name = name;
     }
 
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-    public String getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
@@ -60,13 +54,6 @@ public class Customer implements Serializable {
         this.name = name;
     }
 
-    /*public boolean isNoOrdersMade() {
-        return noOrdersMade;
-    }*/
-
-    /*public void setNoOrdersMade(boolean noOrdersMade) {
-        this.noOrdersMade = noOrdersMade;
-    }*/
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -117,7 +104,6 @@ public class Customer implements Serializable {
         result = 31 * result + getName().hashCode();
         result = 31 * result + getBillingAddress().hashCode();
         result = 31 * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
-        //result = 31 * result + (isNoOrdersMade() ? 1 : 0);
         return result;
     }
 }

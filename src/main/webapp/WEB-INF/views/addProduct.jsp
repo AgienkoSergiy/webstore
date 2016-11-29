@@ -25,14 +25,7 @@
         <form:errors path="*" cssClass="alert alert-danger" element="div"/>
     <fieldset>
         <legend>Add new product</legend>
-        <div class="form-group">
-            <label class="control-label col-lg-2 col-lg-2" for="productId">
-                <spring:message code="addProduct.form.newProductId.label"/></label>
-            <div class="col-lg-10">
-                <form:input id="productId" path="productId" type="text" class="form:input-large"/>
-                <form:errors path="productId" cssClass="text-danger"/>
-            </div>
-        </div>
+
         <div class="form-group">
             <label class="control-label col-lg-2 col-lg-2" for="name">
                 <spring:message code="addProduct.form.name.label"/>
@@ -128,3 +121,4 @@
     </fieldset>
     </form:form>
 </section>
+

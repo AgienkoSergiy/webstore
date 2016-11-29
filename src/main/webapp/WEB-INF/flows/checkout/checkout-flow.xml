@@ -15,12 +15,12 @@
 			result="order.cart" />
 		<transition to="InvalidCartWarning"
 			on-exception="com.packt.webstore.exception.InvalidCartException" />
-		<transition to="collectCustomerID" />
+		<transition to="logIn" />
 	</action-state>
 
 	<!--todo remove redundant moves: collectCustomerId->login move-->
-    <view-state id="collectCustomerID" view="collectCustomerID.jsp" model="order">
-        <transition on="customerIDCollected" to ="checkCustomerExists"/>
+    <view-state id="logIn" view="login" model="order">
+        <transition on="notLogedIn" to ="checkCustomerExists"/>
     </view-state>
 
     <decision-state id="checkCustomerExists">
@@ -39,7 +39,7 @@
 	</view-state>
 
     <action-state id="saveCustomerInfo">
-        <evaluate expression="customerServiceImpl.saveCustomer(order.customer)"/>
+        <evaluate expression="customerServiceImpl.addCustomer(order.customer)"/>
         <transition to="collectShippingDetail"/>
     </action-state>
 

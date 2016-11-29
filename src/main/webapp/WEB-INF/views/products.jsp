@@ -5,6 +5,8 @@
 
 <html>
 
+<c:url var="addUrl" value="/products/add"/>
+
 <section class="container">
     <div class="row">
         <c:forEach items="${products}" var="product">
@@ -29,5 +31,10 @@
             </div>
         </c:forEach>
     </div>
+    <c:if test="${empty products}">
+    There are no products in your shop. Do you wanna add first one?<br>
+    <a href="${addUrl}">Add</a>
+</c:if>
 </section>
+
 </html>
