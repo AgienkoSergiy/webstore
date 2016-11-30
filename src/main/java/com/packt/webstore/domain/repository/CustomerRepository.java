@@ -8,9 +8,13 @@ import java.util.List;
 public interface CustomerRepository {
     List<Customer> getAllCustomers();
 
-    void saveCustomer(Customer customer);
-
     Customer getCustomer(Integer customerId);
 
-    Boolean isCustomerExist(Integer customerId);
+    Boolean customerExists(Integer customerId);
+
+    public void addCustomer(Customer customer);
+
+    public void deleteCustomer(Integer id);
+
+    public void editCustomerInfo(Customer customer);
 }

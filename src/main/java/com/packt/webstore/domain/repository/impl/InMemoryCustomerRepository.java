@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Deprecated
 public class InMemoryCustomerRepository implements CustomerRepository {
 
 
@@ -29,7 +29,6 @@ public class InMemoryCustomerRepository implements CustomerRepository {
         return customersList;
     }
 
-    @Override
     public void saveCustomer(Customer customer) {
         for (Customer user :
                 customersList) {
@@ -53,7 +52,7 @@ public class InMemoryCustomerRepository implements CustomerRepository {
     }
 
     @Override
-    public Boolean isCustomerExist(Integer customerId) {
+    public Boolean customerExists(Integer customerId) {
 
         for (Customer customer :
                 customersList) {
@@ -61,5 +60,20 @@ public class InMemoryCustomerRepository implements CustomerRepository {
              return true;
         }
         return false;
+    }
+
+    @Override
+    public void addCustomer(Customer customer) {
+
+    }
+
+    @Override
+    public void deleteCustomer(Integer id) {
+
+    }
+
+    @Override
+    public void editCustomerInfo(Customer customer) {
+
     }
 }

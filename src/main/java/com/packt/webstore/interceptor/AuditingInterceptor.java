@@ -24,9 +24,7 @@ public class AuditingInterceptor
                 request.getMethod().equals("POST")){
             user = request.getRemoteUser();
             productName = request.getParameterValues("name")[0];
-            System.out.println("blah");
         }
-
         return true;
     }
     public void afterCompletion(HttpServletRequest request,

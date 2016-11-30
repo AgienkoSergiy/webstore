@@ -24,7 +24,7 @@
     </view-state>
 
     <decision-state id="checkCustomerExists">
-        <if test="customerServiceImpl.isCustomerExist(order.customer.customerId)"
+        <if test="customerServiceImpl.customerExists(order.customer.customerId)"
             then="prefillCustomerInfo"
             else="collectCustomerInfo"/>
     </decision-state>

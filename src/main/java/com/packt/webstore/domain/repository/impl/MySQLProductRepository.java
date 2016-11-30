@@ -41,26 +41,34 @@ public class MySQLProductRepository implements ProductRepository {
     }
 
     @Override
-    public List<Product> getProductsByFilter(Map<String, List<String>> filterParams) {
+    public List<Product> getProductsByFilter(Map<String, List<String>> filterParams) { // TODO come to query solution
 
         Set<String> criteria = filterParams.keySet();
-        List<Product> filteredProducts = new LinkedList<>();
+        Set<Product> productsByBrand;
+        Set<Product> productsByCategory;
+        Set<Product> productsByPrice;
+        List<Product> products = new ArrayList<>(getAllProducts());
 
         if(criteria.contains("brand")){
+            productsByBrand = new HashSet<>();
             for(String brandName: filterParams.get("brand")){
-                filteredProducts.addAll(getProductsByManufacturer(brandName));
+                productsByBrand.addAll(getProductsByManufacturer(brandName));
             }
+            products.retainAll(productsByBrand);
         }
         if(criteria.contains("category")){
+            productsByCategory = new HashSet<>();
             for(String categoryName:filterParams.get("category")){
-                filteredProducts.addAll(getProductsByCategory(categoryName));
+                productsByCategory.addAll(getProductsByCategory(categoryName));
             }
+            products.retainAll(productsByCategory);
         }
         if(criteria.contains("price")){
-            filteredProducts.addAll(getProductsByPriceFilter(filterParams));
+            productsByPrice = new HashSet<>(getProductsByPriceFilter(filterParams));
+            products.retainAll(productsByPrice);
         }
 
-        return filteredProducts;
+        return  products;
     }
 
     @Override

@@ -14,7 +14,7 @@ public interface CustomerService {
 
     void deleteCustomer(Integer id);
 
-    Boolean isCustomerExist(Integer id);
+    Boolean customerExists(Integer id);
 
     void editCustomerInfo(Customer customer);
 }
