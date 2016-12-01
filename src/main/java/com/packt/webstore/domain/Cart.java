@@ -1,18 +1,30 @@
 package com.packt.webstore.domain;
 
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Entity
+@Table(name = "ORDER")
 public class Cart implements Serializable {
 
+    @Transient
     private static final long serialVersionUID =
             6350930334140807514L;
 
+    @Id
+    @Column(name = "ID")
     private String cartId;
+
+    @OneToMany(mappedBy = "ORDER")
+    @MapKey(name = "ITEMS")
     private Map<Integer, CartItem> cartItems;
+
+    @Column(name = "GRAND_TOTAL")
     private BigDecimal grandTotal;
 
     public Cart() {

@@ -10,11 +10,15 @@ public interface CustomerService {
 
     void addCustomer(Customer customer);
 
-    Customer getCustomer(Integer id);
+    Customer getCustomerById(Integer id);
+
+    Customer getCustomerByEmail(String email);
 
     void deleteCustomer(Integer id);
 
-    Boolean customerExists(Integer id);
+    Boolean customerExists(String email);
 
     void editCustomerInfo(Customer customer);
+
+    Boolean emailAvailable(String email);
 }

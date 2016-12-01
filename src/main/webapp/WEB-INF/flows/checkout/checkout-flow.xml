@@ -19,18 +19,18 @@
 	</action-state>
 
 	<!--todo remove redundant moves: collectCustomerId->login move-->
-    <view-state id="logIn" view="login" model="order">
-        <transition on="notLogedIn" to ="checkCustomerExists"/>
+    <view-state id="logIn" view="collectCustomerEmail.jsp" model="order">
+        <transition on="customerEmailCollected" to ="checkCustomerExists"/>
     </view-state>
 
     <decision-state id="checkCustomerExists">
-        <if test="customerServiceImpl.customerExists(order.customer.customerId)"
+        <if test="customerServiceImpl.customerExists(order.customer.email)"
             then="prefillCustomerInfo"
             else="collectCustomerInfo"/>
     </decision-state>
 
 	<action-state id="prefillCustomerInfo">
-		<evaluate expression="customerServiceImpl.getCustomer(order.customer.customerId)" result="order.customer"/>
+		<evaluate expression="customerServiceImpl.getCustomerByEmail(order.customer.email)" result="order.customer"/>
 		<transition to="collectCustomerInfo"/>
 	</action-state>
 
@@ -47,7 +47,6 @@
 		<transition on="shippingDetailCollected" to="orderConfirmation" />
 		<transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
 	</view-state>
-
 
 	<view-state id="orderConfirmation">
 		<transition on="orderConfirmed" to="processOrder" />

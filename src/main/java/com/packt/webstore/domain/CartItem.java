@@ -1,16 +1,27 @@
 package com.packt.webstore.domain;
 
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "ORDER_ITEM")
 public class CartItem implements Serializable {
 
+    @Transient
     private static final long serialVersionUID =
             6350930334140807514L;
 
+    @Id
+    @Column(name = "ID")
+    private Integer id;
+    @ManyToOne
+    @Column(name = "PRODUCT")
     private Product product;
+    @Column(name = "QUANTITY")
     private int quantity;
+    @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
 
     public CartItem() {

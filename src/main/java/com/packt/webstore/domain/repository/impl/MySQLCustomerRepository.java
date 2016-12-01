@@ -27,7 +27,7 @@ public class MySQLCustomerRepository implements CustomerRepository {
     }
 
     @Override
-    public Customer getCustomer(Integer id) {
+    public Customer getCustomerById(Integer id) {
 
         Session session = sessionFactory.getCurrentSession();
 
@@ -67,8 +67,26 @@ public class MySQLCustomerRepository implements CustomerRepository {
     }
 
     @Override
-    public Boolean customerExists(Integer id) {
+    public Boolean customerExists(String email) {
 
-        return getCustomer(id)!=null;
+        return !emailAvailable(email);
+    }
+
+    @Override
+    public Customer getCustomerByEmail(String _email){
+        Session session = sessionFactory.getCurrentSession();
+
+        Query query = session.createQuery("from Customer where email = :mail");
+        query.setParameter("mail", _email);
+        if (query.list().isEmpty()){
+            return null;
+        }
+        return (Customer)query.list().get(0);
+    }
+
+    @Override
+    public Boolean emailAvailable(String email) {
+
+        return getCustomerByEmail(email)==null;
     }
 }

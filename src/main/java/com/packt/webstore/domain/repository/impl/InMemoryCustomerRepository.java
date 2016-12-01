@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Deprecated
-public class InMemoryCustomerRepository implements CustomerRepository {
+public class InMemoryCustomerRepository {
 
 
     List<Customer> customersList = new ArrayList<Customer>();
@@ -41,7 +41,6 @@ public class InMemoryCustomerRepository implements CustomerRepository {
         customersList.add(customer);
     }
 
-    @Override
     public Customer getCustomer(Integer customerId) {
         for (Customer customer:
              customersList) {
@@ -51,7 +50,6 @@ public class InMemoryCustomerRepository implements CustomerRepository {
         return null;
     }
 
-    @Override
     public Boolean customerExists(Integer customerId) {
 
         for (Customer customer :
@@ -62,17 +60,14 @@ public class InMemoryCustomerRepository implements CustomerRepository {
         return false;
     }
 
-    @Override
     public void addCustomer(Customer customer) {
 
     }
 
-    @Override
     public void deleteCustomer(Integer id) {
 
     }
 
-    @Override
     public void editCustomerInfo(Customer customer) {
 
     }

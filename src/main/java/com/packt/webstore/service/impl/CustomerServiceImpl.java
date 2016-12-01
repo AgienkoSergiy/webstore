@@ -27,10 +27,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomer(Integer id) {
+    public Customer getCustomerById(Integer id) {
 
-        logger.debug("Retrieving customer id="+id);
-        return customerRepository.getCustomer(id);
+        logger.debug("Retrieving customer with id="+id);
+        return customerRepository.getCustomerById(id);
+    }
+
+    @Override
+    public Customer getCustomerByEmail(String email) {
+
+        logger.debug("Retrieving customer with email "+email);
+        return customerRepository.getCustomerByEmail(email);
     }
 
     @Override
@@ -55,8 +62,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Boolean customerExists(Integer id) {
+    public Boolean emailAvailable(String email) {
+        return customerRepository.emailAvailable(email);
+    }
 
-        return customerRepository.customerExists(id);
+    @Override
+    public Boolean customerExists(String email) {
+
+        return customerRepository.customerExists(email);
     }
 }

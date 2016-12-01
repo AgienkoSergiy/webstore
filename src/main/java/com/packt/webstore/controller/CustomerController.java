@@ -2,7 +2,6 @@ package com.packt.webstore.controller;
 
 import com.packt.webstore.domain.Customer;
 import com.packt.webstore.service.CustomerService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Controller
 public class CustomerController {
@@ -68,7 +65,7 @@ public class CustomerController {
 
         logger.debug("Received request to show edit page");
 
-        model.addAttribute("customer", customerService.getCustomer(id));
+        model.addAttribute("customer", customerService.getCustomerById(id));
 
         return "editCustomerInfo";
     }

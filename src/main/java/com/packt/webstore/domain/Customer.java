@@ -22,7 +22,7 @@ public class Customer implements Serializable {
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
     //private boolean noOrdersMade;
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", unique = true)
     private String email;
 
 
