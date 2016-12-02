@@ -37,19 +37,19 @@
 						<div class="col-xs-6 col-sm-6 col-md-6">
 							<address>
 								<strong>Shipping Address</strong> <br>
-								${order.shippingDetail.name}<br>
-								${order.shippingDetail.shippingAddress.doorNo},${order.shippingDetail.shippingAddress.streetName}
+								${order.deliveryInfo.name}<br>
+								${order.deliveryInfo.deliveryAddress.doorNo},${order.deliveryInfo.deliveryAddress.streetName}
 								<br>
-								${order.shippingDetail.shippingAddress.regionName},${order.shippingDetail.shippingAddress.state}
+								${order.deliveryInfo.deliveryAddress.regionName},${order.deliveryInfo.deliveryAddress.state}
 								<br>
-								${order.shippingDetail.shippingAddress.country},${order.shippingDetail.shippingAddress.zipCode}
+								${order.deliveryInfo.deliveryAddress.country},${order.deliveryInfo.deliveryAddress.zipCode}
 								<br>
 							</address>
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-6 text-right">
 							<p>
 								<em>Shipping DateDate: <fmt:formatDate type="date"
-										value="${order.shippingDetail.shippingDate}" /></em>
+										value="${order.deliveryInfo.deliveryDate}" /></em>
 							</p>
 						</div>
 					</div>

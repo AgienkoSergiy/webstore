@@ -17,7 +17,6 @@ public class CartItem implements Serializable {
     @Column(name = "ID")
     private Integer id;
     @ManyToOne
-    @Column(name = "PRODUCT")
     private Product product;
     @Column(name = "QUANTITY")
     private int quantity;

@@ -1,19 +1,32 @@
 package com.packt.webstore.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+
+@Entity
+@Table(name = "ORDER")
 public class Order  implements Serializable{
 
+	@Transient
 	private static final long serialVersionUID = -3560539622417210365L;
-	
+
+	@Id
+	@Column(name = "ID")
 	private Long orderId;
+	@OneToOne
+	@Column(name = "ITEMS")
 	private Cart cart;
+	@OneToOne
+	@Column(name = "USER")
 	private Customer customer;
-	private ShippingDetail shippingDetail;
+	@OneToOne
+	@Column(name = "DELIVERY_INFO")
+	private DeliveryInfo deliveryInfo;
 	
 	public Order() {
 		this.customer = new Customer();
-		this.shippingDetail = new ShippingDetail();
+		this.deliveryInfo = new DeliveryInfo();
 	}
 
 	public Long getOrderId() {
@@ -40,12 +53,12 @@ public class Order  implements Serializable{
 		this.customer = customer;
 	}
 
-	public ShippingDetail getShippingDetail() {
-		return shippingDetail;
+	public DeliveryInfo getDeliveryInfo() {
+		return deliveryInfo;
 	}
 
-	public void setShippingDetail(ShippingDetail shippingDetail) {
-		this.shippingDetail = shippingDetail;
+	public void setDeliveryInfo(DeliveryInfo deliveryInfo) {
+		this.deliveryInfo = deliveryInfo;
 	}
 
 	public static long getSerialversionuid() {

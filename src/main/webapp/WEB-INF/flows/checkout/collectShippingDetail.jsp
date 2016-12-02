@@ -19,7 +19,7 @@
 		</div>
 	</section>
 	<section class="container">
-		<form:form modelAttribute="order.shippingDetail" class="form-horizontal">
+		<form:form modelAttribute="order.deliveryInfo" class="form-horizontal">
 			<fieldset>
 				<legend>Shipping Details</legend>
 				

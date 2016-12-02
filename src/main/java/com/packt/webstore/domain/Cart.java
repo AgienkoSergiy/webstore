@@ -20,8 +20,8 @@ public class Cart implements Serializable {
     @Column(name = "ID")
     private String cartId;
 
-    @OneToMany(mappedBy = "ORDER")
-    @MapKey(name = "ITEMS")
+    @OneToMany(mappedBy = "product")
+    @MapKey(name = "id")
     private Map<Integer, CartItem> cartItems;
 
     @Column(name = "GRAND_TOTAL")
