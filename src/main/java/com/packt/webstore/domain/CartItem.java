@@ -26,9 +26,7 @@ public class CartItem implements Serializable {
     private int quantity;
     @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
-    @ManyToOne
-    @MapKey(name = "cartId")
-    Cart cart;
+
 
     public CartItem() {
     }
@@ -45,7 +43,7 @@ public class CartItem implements Serializable {
         this.product = product;
         this.quantity = 1;
         this.totalPrice = product.getUnitPrice();
-        this.cart=cart;
+        //this.cart=cart;
     }
 
     public Integer getId() {
@@ -56,13 +54,7 @@ public class CartItem implements Serializable {
         this.id = id;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
 
     public Product getProduct() {
         return product;

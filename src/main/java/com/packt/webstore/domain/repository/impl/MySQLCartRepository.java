@@ -52,7 +52,8 @@ public class MySQLCartRepository implements CartRepository {
         Session session = sessionFactory.getCurrentSession();
         existingCart.setCartItems(cart.getCartItems());
         existingCart.updateGrandTotal();
-        session.save(existingCart);
+        session.merge(existingCart);
+       // session.save(existingCart);
     }
 
     @Override

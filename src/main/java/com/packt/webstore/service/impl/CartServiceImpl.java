@@ -28,7 +28,6 @@ public class CartServiceImpl implements CartService {
             return null;
         }
         Cart cart = cartRepository.read(cartId);
-        cart.setCartItems(cartItemsRepository.read(cartId));
         return cart;
     }
     public void update(String cartId, Cart cart) {

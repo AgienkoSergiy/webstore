@@ -1,6 +1,9 @@
 package com.packt.webstore.domain;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -20,9 +23,10 @@ public class Cart implements Serializable {
     @Column(name = "ID")
     private String cartId;
 
-    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
-    @MapKey(name = "id")
-    private Map<Integer, CartItem> cartItems;
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @MapKey(name = "product")
+    @JoinColumn(name = "ID")
+    private Map<Product, CartItem> cartItems;
 
     @Column(name = "GRAND_TOTAL")
     private BigDecimal grandTotal;
@@ -45,11 +49,11 @@ public class Cart implements Serializable {
         this.cartId = cartId;
     }
 
-    public Map<Integer, CartItem> getCartItems() {
+    public Map<Product, CartItem> getCartItems() {
         return cartItems;
     }
 
-    public void setCartItems(Map<Integer, CartItem> cartItems) {
+    public void setCartItems(Map<Product, CartItem> cartItems) {
         this.cartItems = cartItems;
     }
 
@@ -58,15 +62,14 @@ public class Cart implements Serializable {
     }
 
     public void addCartItem(CartItem item) {
-        Integer productId = item.getProduct().getProductId();
+        Product product= item.getProduct();
 
-        if(cartItems.containsKey(productId)) {
-            CartItem existingCartItem = cartItems.get(productId);
-            existingCartItem.setQuantity(existingCartItem.getQuantity
-                    ()+ item.getQuantity());
-            cartItems.put(productId, existingCartItem);
+        if(cartItems.containsKey(product)) {
+            CartItem existingCartItem = cartItems.get(product);
+            existingCartItem.setQuantity(existingCartItem.getQuantity()+ item.getQuantity());
+            //cartItems.put(product, existingCartItem);
         } else {
-            cartItems.put(productId, item);
+            cartItems.put(product, item);
         }
         updateGrandTotal();
     }
