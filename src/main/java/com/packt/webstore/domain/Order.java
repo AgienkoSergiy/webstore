@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "SHOPPING_ORDER")
 public class Order  implements Serializable{
 
 	@Transient
@@ -15,13 +15,10 @@ public class Order  implements Serializable{
 	@Column(name = "ID")
 	private Long orderId;
 	@OneToOne
-	@Column(name = "ITEMS")
 	private Cart cart;
 	@OneToOne
-	@Column(name = "USER")
 	private Customer customer;
 	@OneToOne
-	@Column(name = "DELIVERY_INFO")
 	private DeliveryInfo deliveryInfo;
 	
 	public Order() {

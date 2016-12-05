@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "CART")
 public class Cart implements Serializable {
 
     @Transient
@@ -20,7 +20,7 @@ public class Cart implements Serializable {
     @Column(name = "ID")
     private String cartId;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
     @MapKey(name = "id")
     private Map<Integer, CartItem> cartItems;
 

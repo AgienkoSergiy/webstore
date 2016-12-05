@@ -30,15 +30,13 @@ public class MySQLCartRepository implements CartRepository {
     }
 
     @Override
-
     public Cart read(String cartId) {
 
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Cart where id = :id");
         query.setParameter("id", cartId);
         if (query.list().isEmpty()){
-            throw new IllegalArgumentException(String.format("Can not read a cart." +
-                    " A cart with the given id (%) does not exist",cartId));
+            return null;
         }
         return (Cart) query.list().get(0);
     }
@@ -47,6 +45,10 @@ public class MySQLCartRepository implements CartRepository {
     public void update(String cartId,  Cart cart) {
 
         Cart existingCart = read(cartId);
+        if(existingCart==null){
+            throw new IllegalArgumentException("Can not read a cart." +
+                    " A cart with the given id" + cartId +" does not exist");
+        }
         Session session = sessionFactory.getCurrentSession();
         existingCart.setCartItems(cart.getCartItems());
         existingCart.updateGrandTotal();
@@ -57,6 +59,10 @@ public class MySQLCartRepository implements CartRepository {
     public void delete(String cartId) {
 
         Cart cart = read(cartId);
+        if(cart==null){
+            throw new IllegalArgumentException("Can not read a cart." +
+                    " A cart with the given id" + cartId +" does not exist");
+        }
         Session session = sessionFactory.getCurrentSession();
         session.delete(cart);
     }

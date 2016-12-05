@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "ORDER_ITEM")
+@Table(name = "CART_ITEM")
 public class CartItem implements Serializable {
 
     @Transient
@@ -14,14 +14,21 @@ public class CartItem implements Serializable {
             6350930334140807514L;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID")
     private Integer id;
-    @ManyToOne
+
+
+
+    @OneToOne
     private Product product;
     @Column(name = "QUANTITY")
     private int quantity;
     @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
+    @ManyToOne
+    @MapKey(name = "cartId")
+    Cart cart;
 
     public CartItem() {
     }
@@ -31,6 +38,30 @@ public class CartItem implements Serializable {
         this.product = product;
         this.quantity = 1;
         this.totalPrice = product.getUnitPrice();
+    }
+
+    public CartItem(Product product, Cart cart){
+        super();
+        this.product = product;
+        this.quantity = 1;
+        this.totalPrice = product.getUnitPrice();
+        this.cart=cart;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public Product getProduct() {
