@@ -1,6 +1,8 @@
 package com.packt.webstore.domain;
 
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,7 +11,6 @@ import java.math.BigDecimal;
 @Table(name = "CART_ITEM")
 public class CartItem implements Serializable {
 
-    @Transient
     private static final long serialVersionUID =
             6350930334140807514L;
 
@@ -20,12 +21,16 @@ public class CartItem implements Serializable {
 
 
 
-    @OneToOne
+    @OneToOne  //TODO move annotations to getters defines
     private Product product;
     @Column(name = "QUANTITY")
     private int quantity;
     @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
+    private Cart cart;
 
 
     public CartItem() {
@@ -43,7 +48,7 @@ public class CartItem implements Serializable {
         this.product = product;
         this.quantity = 1;
         this.totalPrice = product.getUnitPrice();
-        //this.cart=cart;
+        this.cart=cart;
     }
 
     public Integer getId() {
@@ -81,6 +86,15 @@ public class CartItem implements Serializable {
     public void updateTotalPrice() {
         totalPrice = this.product.getUnitPrice().multiply(
                 new BigDecimal(this.quantity));
+    }
+
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     @Override

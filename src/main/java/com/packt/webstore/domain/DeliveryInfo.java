@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Table(name = "DELIVERY_INFO")
 public class DeliveryInfo implements Serializable{
 
-    @Transient
 	private static final long serialVersionUID = 6350930334140807514L;
 
     @Id

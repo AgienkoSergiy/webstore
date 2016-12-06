@@ -1,8 +1,8 @@
 package com.packt.webstore.domain;
 
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +15,6 @@ import java.util.Map;
 @Table(name = "CART")
 public class Cart implements Serializable {
 
-    @Transient
     private static final long serialVersionUID =
             6350930334140807514L;
 
@@ -23,9 +22,10 @@ public class Cart implements Serializable {
     @Column(name = "ID")
     private String cartId;
 
-    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, orphanRemoval = true)
     @MapKey(name = "product")
-    @JoinColumn(name = "ID")
+    @JsonManagedReference
     private Map<Product, CartItem> cartItems;
 
     @Column(name = "GRAND_TOTAL")
@@ -67,7 +67,7 @@ public class Cart implements Serializable {
         if(cartItems.containsKey(product)) {
             CartItem existingCartItem = cartItems.get(product);
             existingCartItem.setQuantity(existingCartItem.getQuantity()+ item.getQuantity());
-            //cartItems.put(product, existingCartItem);
+            cartItems.put(product, existingCartItem);
         } else {
             cartItems.put(product, item);
         }

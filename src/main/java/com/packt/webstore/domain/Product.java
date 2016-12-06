@@ -50,7 +50,7 @@ public class Product implements Serializable {
     @Column(name = "CATEGORY")
     private String category;
 
-    @Transient
+
     private static final long serialVersionUID =
             6350930334140807514L;
 

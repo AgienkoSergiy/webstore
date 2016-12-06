@@ -8,7 +8,6 @@ import java.io.Serializable;
 @Table(name = "SHOPPING_ORDER")
 public class Order  implements Serializable{
 
-	@Transient
 	private static final long serialVersionUID = -3560539622417210365L;
 
 	@Id
