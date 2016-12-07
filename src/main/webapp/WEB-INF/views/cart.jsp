@@ -6,8 +6,8 @@
 <html>
 <head>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-    <script src="/webstore/resources/js/controllers.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/controllers.js"></script>
 
 
 
