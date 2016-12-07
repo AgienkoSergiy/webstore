@@ -86,7 +86,7 @@ public class CartRestController {
             throw new IllegalArgumentException(new ProductNotFoundException(productId));
         }
 
-        cart.removeCartItem(new CartItem(product));
+        cart.removeCartItem(new CartItem(product,cart));
 
         cartService.update(sessionId, cart);
     }

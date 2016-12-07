@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Table(name = "USER")
 public class Customer implements Serializable {
 
-    @Transient
+
     private static final long  serialVersionUID =
             2284040482222162898L;
 

@@ -8,7 +8,6 @@ import java.io.Serializable;
 @Embeddable
 public class Address implements Serializable {
 
-    @Transient
     private static final long serialVersionUID =
             -530086768384258062L;
 
