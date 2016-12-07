@@ -31,16 +31,16 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for="shippingDate" />shipping Date (dd/mm/yyyy)</label>
+					<label class="control-label col-lg-2 col-lg-2" for="deliveryDate" />delivery Date (dd/mm/yyyy)</label>
 					<div class="col-lg-10">
-						<form:input id="shippingDate" path="shippingDate" type="text" class="form:input-large" />
+						<form:input id="deliveryDate" path="deliveryDate" type="text" class="form:input-large" />
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="doorNo">Door No</label>
 					<div class="col-lg-10">
-						<form:input id="doorNo" path="shippingAddress.doorNo" type="text"
+						<form:input id="doorNo" path="deliveryAddress.doorNo" type="text"
 							class="form:input-large" />
 					</div>
 				</div>
@@ -48,7 +48,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="streetName">Street Name</label>
 					<div class="col-lg-10">
-						<form:input id="streetName" path="shippingAddress.streetName." type="text"
+						<form:input id="streetName" path="deliveryAddress.streetName." type="text"
 							class="form:input-large" />
 					</div>
 				</div>
@@ -56,7 +56,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="regionName">Area Name</label>
 					<div class="col-lg-10">
-						<form:input id="regionName" path="shippingAddress.regionName" type="text"
+						<form:input id="regionName" path="deliveryAddress.regionName" type="text"
 							class="form:input-large" />
 					</div>
 				</div>
@@ -64,7 +64,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="state">State</label>
 					<div class="col-lg-10">
-						<form:input id="state" path="shippingAddress.state" type="text"
+						<form:input id="state" path="deliveryAddress.state" type="text"
 							class="form:input-large" />
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="country">country</label>
 					<div class="col-lg-10">
-						<form:input id="country" path="shippingAddress.country" type="text"
+						<form:input id="country" path="deliveryAddress.country" type="text"
 							class="form:input-large" />
 					</div>
 				</div>
@@ -80,7 +80,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="zipCode">Zip Code</label>
 					<div class="col-lg-10">
-						<form:input id="zipCode" path="shippingAddress.zipCode" type="text"
+						<form:input id="zipCode" path="deliveryAddress.zipCode" type="text"
 							class="form:input-large" />
 					</div>
 				</div>

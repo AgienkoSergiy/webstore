@@ -40,17 +40,17 @@
 
     <action-state id="saveCustomerInfo">
         <evaluate expression="customerServiceImpl.addCustomer(order.customer)"/>
-        <transition to="collectShippingDetail"/>
+        <transition to="collectDeliveryDetail"/>
     </action-state>
 
-	<view-state id="collectShippingDetail" model="order">
+	<view-state id="collectDeliveryDetail" model="order">
 		<transition on="shippingDetailCollected" to="orderConfirmation" />
 		<transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
 	</view-state>
 
 	<view-state id="orderConfirmation">
 		<transition on="orderConfirmed" to="processOrder" />
-		<transition on="backToCollectShippingDetail" to="collectShippingDetail" />
+		<transition on="backToCollectShippingDetail" to="collectDeliveryDetail" />
 	</view-state>
 	
 	<action-state id="processOrder">

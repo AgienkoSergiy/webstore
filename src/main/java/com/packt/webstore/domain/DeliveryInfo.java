@@ -15,6 +15,7 @@ public class DeliveryInfo implements Serializable{
 
     @Id
 	private String name;
+	@Temporal(TemporalType.DATE)
     @Column(name = "DELIVERY_DATE")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date deliveryDate;
