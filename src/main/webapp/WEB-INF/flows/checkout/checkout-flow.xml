@@ -34,23 +34,24 @@
 		<transition to="collectCustomerInfo"/>
 	</action-state>
 
+	<!--TODO delete redundant-->
 	<view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="order">
 		<transition on="customerInfoCollected" to="saveCustomerInfo" />
 	</view-state>
 
     <action-state id="saveCustomerInfo">
         <evaluate expression="customerServiceImpl.addCustomer(order.customer)"/>
-        <transition to="collectDeliveryDetail"/>
+        <transition to="collectDeliveryDetails"/>
     </action-state>
 
-	<view-state id="collectDeliveryDetail" model="order">
-		<transition on="shippingDetailCollected" to="orderConfirmation" />
+	<view-state id="collectDeliveryDetails" model="order">
+		<transition on="deliveryDetailsCollected" to="orderConfirmation" />
 		<transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
 	</view-state>
 
 	<view-state id="orderConfirmation">
 		<transition on="orderConfirmed" to="processOrder" />
-		<transition on="backToCollectShippingDetail" to="collectDeliveryDetail" />
+		<transition on="backToCollectShippingDetail" to="collectDeliveryDetails" />
 	</view-state>
 	
 	<action-state id="processOrder">
@@ -73,6 +74,5 @@
 	<global-transitions>
 		<transition on = "cancel" to="endState" />
 	</global-transitions>
-    
 
 </flow>

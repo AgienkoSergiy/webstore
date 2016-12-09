@@ -9,8 +9,10 @@ import com.packt.webstore.domain.repository.OrderRepository;
 import com.packt.webstore.domain.repository.ProductRepository;
 import com.packt.webstore.service.CartService;
 import com.packt.webstore.service.OrderService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService{
 
     @Autowired
@@ -35,7 +37,6 @@ public class OrderServiceImpl implements OrderService{
 
     public Long saveOrder(Order order) {
         Long orderId = orderRepository.saveOrder(order);
-        cartService.delete(order.getCart().getCartId());
         return orderId;
     }
 

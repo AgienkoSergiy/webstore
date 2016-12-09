@@ -13,25 +13,18 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Shipping</h1>
-				<p>Shipping details</p>
+				<h1>Delivery</h1>
+				<p>Delivery details</p>
 			</div>
 		</div>
 	</section>
 	<section class="container">
 		<form:form modelAttribute="order.deliveryInfo" class="form-horizontal">
 			<fieldset>
-				<legend>Shipping Details</legend>
-				
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for="name" />Name</label>
-					<div class="col-lg-10">
-						<form:input id="name" path="name" type="text" class="form:input-large" />
-					</div>
-				</div>
+				<legend>Delivery Details</legend>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for="deliveryDate" />delivery Date (dd/mm/yyyy)</label>
+					<label class="control-label col-lg-2 col-lg-2" for="deliveryDate">delivery Date (dd/mm/yyyy)</label>
 					<div class="col-lg-10">
 						<form:input id="deliveryDate" path="deliveryDate" type="text" class="form:input-large" />
 					</div>
@@ -92,7 +85,7 @@
 						<button id="back" class="btn btn-default" name="_eventId_backToCollectCustomerInfo">back</button>
 						
 						<input type="submit" id="btnAdd" class="btn btn-primary"
-							value="Add"  name="_eventId_shippingDetailCollected"/>
+							value="Add"  name="_eventId_deliveryDetailsCollected"/>
 						<button id="btnCancel" class="btn btn-default" name="_eventId_cancel">Cancel</button>
 					</div>
 				</div>

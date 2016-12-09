@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.packt.webstore.domain.Order;
 import com.packt.webstore.domain.repository.OrderRepository;
 
-@Repository
-public class InMemoryOrderRepositoryImpl implements OrderRepository{
+
+public class InMemoryOrderRepositoryImpl {
 
 	private Map<Long, Order> listOfOrders;
 	private long nextOrderId;

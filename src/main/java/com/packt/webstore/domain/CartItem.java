@@ -28,7 +28,7 @@ public class CartItem implements Serializable {
     @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JsonBackReference
     private Cart cart;
 

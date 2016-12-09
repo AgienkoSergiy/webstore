@@ -66,7 +66,7 @@
     <definition name="collectShippingDetail" extends="baseLayout">
         <put-attribute name="title" value="Shipping Details" />
         <put-attribute name="heading" value="Shipping Details" />
-        <put-attribute name="content" value="/WEB-INF/flows/checkout/collectDeliveryDetail.jsp" />
+        <put-attribute name="content" value="/WEB-INF/flows/checkout/collectDeliveryDetails.jsp" />
     </definition>
 
     <definition name="orderConfirmation" extends="baseLayout">

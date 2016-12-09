@@ -13,8 +13,10 @@ public class DeliveryInfo implements Serializable{
 
 	private static final long serialVersionUID = 6350930334140807514L;
 
-    @Id
-	private String name;
+	@Id
+	@GeneratedValue
+	private Long id;
+
 	@Temporal(TemporalType.DATE)
     @Column(name = "DELIVERY_DATE")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -28,37 +30,31 @@ public class DeliveryInfo implements Serializable{
 	}
 
 
-		public String getName() {
-			return name;
-		}
-
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-
-		public Date getDeliveryDate() {
+	public Date getDeliveryDate() {
 			return deliveryDate;
 		}
 
 
-		public void setDeliveryDate(Date shippingDate) {
-			this.deliveryDate = shippingDate;
-		}
+	public void setDeliveryDate(Date shippingDate) {
+		this.deliveryDate = shippingDate;
+	}
 
 
-		public Address getDeliveryAddress() {
-			return deliveryAddress;
-		}
+	public Address getDeliveryAddress() {
+		return deliveryAddress;
+	}
 
 
-		public void setDeliveryAddress(Address shippingAddress) {
-			this.deliveryAddress = shippingAddress;
-		}
+	public void setDeliveryAddress(Address shippingAddress) {
+		this.deliveryAddress = shippingAddress;
+	}
 
+	public Long getId() {
+		return id;
+	}
 
-		public static long getSerialversionuid() {
+	public static long getSerialversionuid() {
 			return serialVersionUID;
 		}
+
 }

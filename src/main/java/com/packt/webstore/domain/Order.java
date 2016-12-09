@@ -1,7 +1,10 @@
 package com.packt.webstore.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 
 @Entity
@@ -12,13 +15,19 @@ public class Order  implements Serializable{
 
 	@Id
 	@Column(name = "ID")
+	@GeneratedValue
 	private Long orderId;
 	@OneToOne
 	private Cart cart;
 	@OneToOne
 	private Customer customer;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private DeliveryInfo deliveryInfo;
+
+	@Column(name = "DELIVERY_DATE")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date oderDate;
 	
 	public Order() {
 		this.customer = new Customer();
@@ -55,6 +64,14 @@ public class Order  implements Serializable{
 
 	public void setDeliveryInfo(DeliveryInfo deliveryInfo) {
 		this.deliveryInfo = deliveryInfo;
+	}
+
+	public Date getOderDate() {
+		return oderDate;
+	}
+
+	public void setOderDate(Date oderDate) {
+		this.oderDate = oderDate;
 	}
 
 	public static long getSerialversionuid() {
