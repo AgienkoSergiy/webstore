@@ -21,15 +21,22 @@ public class Customer implements Serializable {
     private Address billingAddress;
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
-    //private boolean noOrdersMade;
     @Column(name = "EMAIL", unique = true)
     private String email;
+    @Column(name = "PASSWORD")
+    private String password;
+    @Column(name = "ROLE")
+    private String role;
+    @Column(name = "ENABLED")
+    private Boolean enabled;
 
 
 
     public Customer() {
         super();
         this.billingAddress = new Address();
+        this.role = "ROLE_USER";
+        this.enabled = true;
     }
 
     public Customer(Integer customerId, String name) {
@@ -81,6 +88,30 @@ public class Customer implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override

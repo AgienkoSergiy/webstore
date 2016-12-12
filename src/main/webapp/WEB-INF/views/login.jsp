@@ -40,7 +40,7 @@
                     <form action="<c:url value="/j_spring_security_check"></c:url>" method="post">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="User Name"
+                                <input class="form-control" placeholder="User email"
                                        name='j_username' type="text">
                             </div>
                             <div class="form-group">
