@@ -42,7 +42,7 @@
 
 
 	<action-state id="getCustomer">
-		<evaluate expression='customerServiceImpl.getCustomerByEmail(externalContext.sessionMap.get("email"))' result="order.customer"/>
+		<evaluate expression="customerServiceImpl.getCurrentCustomer()" result="order.customer"/>
 		<transition to="collectCustomerInfo" />
 	</action-state>
 

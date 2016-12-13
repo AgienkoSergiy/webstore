@@ -57,7 +57,7 @@ public class Product implements Serializable {
     @Column(name = "UNITS_IN_STOCK")
     private long unitsInStock;
 
-    @Column(name = "_CONDIDION")
+    @Column(name = "COND")
     private String condition;
     @Transient
     @JsonIgnore
