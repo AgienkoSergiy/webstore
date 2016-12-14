@@ -1,21 +1,43 @@
 package com.packt.webstore.domain;
 
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+
+@Embeddable
 public class Address implements Serializable {
+
     private static final long serialVersionUID =
             -530086768384258062L;
+
+    @Column(name = "DOOR_NUMBER")
     private String doorNo;
+    @Column(name = "STREET_NAME")
     private String streetName;
-    private String areaName;
+    @Column(name = "REGION_NAME")
+    private String regionName;
+    @Column(name = "STATE")
     private String state;
+    @Column(name = "COUNTRY")
     private String country;
+    @Column(name = "ZIP_CODE")
     private String zipCode;
-    // add getters and setters for all the fields here.
-    // Override equals and hashCode based on all the fields.
-    // the code for the same is available in the code bundle which
-    // can be downloaded from www.packtpub.com/support
+
+    public Address(){
+        super();
+    }
+
+    public Address(String doorNo, String streetName,
+                   String regionName, String state,
+                   String country, String zipCode) {
+        this.doorNo = doorNo;
+        this.streetName = streetName;
+        this.regionName = regionName;
+        this.state = state;
+        this.country = country;
+        this.zipCode = zipCode;
+    }
 
 
     public static long getSerialVersionUID() {
@@ -38,12 +60,12 @@ public class Address implements Serializable {
         this.streetName = streetName;
     }
 
-    public String getAreaName() {
-        return areaName;
+    public String getRegionName() {
+        return regionName;
     }
 
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
+    public void setRegionName(String regionName) {
+        this.regionName = regionName;
     }
 
     public String getState() {
@@ -79,7 +101,7 @@ public class Address implements Serializable {
 
         if (!getDoorNo().equals(address.getDoorNo())) return false;
         if (!getStreetName().equals(address.getStreetName())) return false;
-        if (!getAreaName().equals(address.getAreaName())) return false;
+        if (!getRegionName().equals(address.getRegionName())) return false;
         if (!getState().equals(address.getState())) return false;
         if (!getCountry().equals(address.getCountry())) return false;
         return getZipCode().equals(address.getZipCode());
@@ -90,7 +112,7 @@ public class Address implements Serializable {
     public int hashCode() {
         int result = getDoorNo().hashCode();
         result = 31 * result + getStreetName().hashCode();
-        result = 31 * result + getAreaName().hashCode();
+        result = 31 * result + getRegionName().hashCode();
         result = 31 * result + getState().hashCode();
         result = 31 * result + getCountry().hashCode();
         result = 31 * result + getZipCode().hashCode();
@@ -103,7 +125,7 @@ public class Address implements Serializable {
         return "Address{" +
                 "doorNo='" + doorNo + '\'' +
                 ", streetName='" + streetName + '\'' +
-                ", areaName='" + areaName + '\'' +
+                ", regionName='" + regionName + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
                 ", zipCode='" + zipCode + '\'' +

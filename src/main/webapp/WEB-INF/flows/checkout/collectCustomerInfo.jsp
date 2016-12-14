@@ -24,13 +24,6 @@
 				<legend>Customer Details</legend>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for="customerId" />Customer Id</label>
-					<div class="col-lg-10">
-						<form:input id="customerId" path="customerId" type="text" class="form:input-large" />
-					</div>
-				</div>
-
-				<div class="form-group">
 					<label class="control-label col-lg-2" for="name">Name</label>
 					<div class="col-lg-10">
 						<form:input id="name" path="name" type="text" class="form:input-large" />
@@ -54,9 +47,9 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="areaName">Area Name</label>
+					<label class="control-label col-lg-2" for="regionName">Area Name</label>
 					<div class="col-lg-10">
-						<form:input id="areaName" path="billingAddress.areaName" type="text"
+						<form:input id="regionName" path="billingAddress.regionName" type="text"
 							class="form:input-large" />
 					</div>
 				</div>

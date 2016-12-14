@@ -13,45 +13,53 @@
 	<action-state id="addCartToOrder">
 		<evaluate expression="cartServiceImpl.validate(requestParameters.cartId)"
 			result="order.cart" />
+
 		<transition to="InvalidCartWarning"
 			on-exception="com.packt.webstore.exception.InvalidCartException" />
-		<transition to="collectCustomerID" />
+		<transition to="getCustomer" />
 	</action-state>
 
-	<!--todo remove redundant moves: collectCustomerId->login move-->
-    <view-state id="collectCustomerID" view="collectCustomerID.jsp" model="order">
-        <transition on="customerIDCollected" to ="checkCustomerExists"/>
+	<!--
+    <view-state id="logIn" view="collectCustomerEmail.jsp" model="order">
+        <transition on="customerEmailCollected" to ="checkCustomerExists"/>
     </view-state>
 
     <decision-state id="checkCustomerExists">
-        <if test="customerServiceImpl.isCustomerExist(order.customer.customerId)"
+        <if test="customerServiceImpl.customerExists(order.customer.email)"
             then="prefillCustomerInfo"
             else="collectCustomerInfo"/>
     </decision-state>
 
-	<action-state id="prefillCustomerInfo">
-		<evaluate expression="customerServiceImpl.getCustomer(order.customer.customerId)" result="order.customer"/>
-		<transition to="collectCustomerInfo"/>
-	</action-state>
 
-	<view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="order">
-		<transition on="customerInfoCollected" to="saveCustomerInfo" />
-	</view-state>
+
+
 
     <action-state id="saveCustomerInfo">
-        <evaluate expression="customerServiceImpl.saveCustomer(order.customer)"/>
-        <transition to="collectShippingDetail"/>
+        <evaluate expression="customerServiceImpl.addCustomer(order.customer)"/>
+        <transition to="collectDeliveryDetails"/>
     </action-state>
+	-->
 
-	<view-state id="collectShippingDetail" model="order">
-		<transition on="shippingDetailCollected" to="orderConfirmation" />
-		<transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
+
+	<action-state id="getCustomer">
+		<evaluate expression="customerServiceImpl.getCurrentCustomer()" result="order.customer"/>
+		<transition to="collectCustomerInfo" />
+	</action-state>
+
+
+
+	<view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="order">
+		<transition on="customerInfoCollected" to="collectDeliveryDetails" />
 	</view-state>
 
+	<view-state id="collectDeliveryDetails" model="order">
+		<transition on="deliveryDetailsCollected" to="orderConfirmation" />
+		<transition on="backToCollectCustomerInfo" to="cancelCheckout"/>
+	</view-state>
 
 	<view-state id="orderConfirmation">
 		<transition on="orderConfirmed" to="processOrder" />
-		<transition on="backToCollectShippingDetail" to="collectShippingDetail" />
+		<transition on="backToCollectShippingDetail" to="collectDeliveryDetails" />
 	</view-state>
 	
 	<action-state id="processOrder">
@@ -74,6 +82,5 @@
 	<global-transitions>
 		<transition on = "cancel" to="endState" />
 	</global-transitions>
-    
 
 </flow>

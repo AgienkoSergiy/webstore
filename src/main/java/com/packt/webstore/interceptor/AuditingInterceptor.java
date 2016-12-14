@@ -15,7 +15,7 @@ public class AuditingInterceptor
 
     Logger logger = Logger.getLogger("auditLogger");
     private String user;
-    private String productId;
+    private String productName;
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse arg1, Object handler)
             throws Exception {
@@ -23,7 +23,7 @@ public class AuditingInterceptor
         if(request.getRequestURI().endsWith("products/add") &&
                 request.getMethod().equals("POST")){
             user = request.getRemoteUser();
-            productId = request.getParameterValues("productId")[0];
+            productName = request.getParameterValues("name")[0];
         }
         return true;
     }
@@ -33,7 +33,7 @@ public class AuditingInterceptor
             throws Exception {
         if(request.getRequestURI().endsWith("products/add") &&
                 response.getStatus()==302){
-            logger.info(String.format("A New product[%s] Added by %s on %s", productId, user, getCurrentTime()));
+            logger.info(String.format("A New product[%s] Added by %s on %s", productName, user, getCurrentTime()));
         }
     }
     private String getCurrentTime() {

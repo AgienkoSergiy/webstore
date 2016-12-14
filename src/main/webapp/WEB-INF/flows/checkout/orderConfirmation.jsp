@@ -37,19 +37,18 @@
 						<div class="col-xs-6 col-sm-6 col-md-6">
 							<address>
 								<strong>Shipping Address</strong> <br>
-								${order.shippingDetail.name}<br>
-								${order.shippingDetail.shippingAddress.doorNo},${order.shippingDetail.shippingAddress.streetName}
+								${order.deliveryInfo.deliveryAddress.doorNo},${order.deliveryInfo.deliveryAddress.streetName}
 								<br>
-								${order.shippingDetail.shippingAddress.areaName},${order.shippingDetail.shippingAddress.state}
+								${order.deliveryInfo.deliveryAddress.regionName},${order.deliveryInfo.deliveryAddress.state}
 								<br>
-								${order.shippingDetail.shippingAddress.country},${order.shippingDetail.shippingAddress.zipCode}
+								${order.deliveryInfo.deliveryAddress.country},${order.deliveryInfo.deliveryAddress.zipCode}
 								<br>
 							</address>
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-6 text-right">
 							<p>
 								<em>Shipping DateDate: <fmt:formatDate type="date"
-										value="${order.shippingDetail.shippingDate}" /></em>
+										value="${order.deliveryInfo.deliveryDate}" /></em>
 							</p>
 						</div>
 					</div>
@@ -60,7 +59,7 @@
 								${order.customer.name}<br>
 								${order.customer.billingAddress.doorNo},${order.customer.billingAddress.streetName}
 								<br>
-								${order.customer.billingAddress.areaName},${order.customer.billingAddress.state}
+								${order.customer.billingAddress.regionName},${order.customer.billingAddress.state}
 								<br>
 								${order.customer.billingAddress.country},${order.customer.billingAddress.zipCode}
 								<br> <abbr title="Phone">P:</abbr>

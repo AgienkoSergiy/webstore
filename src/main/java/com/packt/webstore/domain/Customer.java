@@ -1,35 +1,55 @@
 package com.packt.webstore.domain;
 
 
+import javax.persistence.*;
 import java.io.Serializable;
-
+@Entity
+@Table(name = "USER")
 public class Customer implements Serializable {
+
 
     private static final long  serialVersionUID =
             2284040482222162898L;
 
-    private String customerId;
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue
+    private Integer customerId;
+    @Column(name = "NAME")
     private String name;
+    @Embedded
     private Address billingAddress;
+    @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
-    boolean noOrdersMade;
+    @Column(name = "EMAIL", unique = true)
+    private String email;
+    @Column(name = "PASSWORD")
+    private String password;
+    @Column(name = "ROLE")
+    private String role;
+    @Column(name = "ENABLED")
+    private Boolean enabled;
+
+
 
     public Customer() {
         super();
         this.billingAddress = new Address();
+        this.role = "ROLE_USER";
+        this.enabled = true;
     }
 
-    public Customer(String customerId, String name) {
+    public Customer(Integer customerId, String name) {
         this();
         this.customerId = customerId;
         this.name = name;
     }
 
-    public String getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
@@ -41,13 +61,6 @@ public class Customer implements Serializable {
         this.name = name;
     }
 
-    public boolean isNoOrdersMade() {
-        return noOrdersMade;
-    }
-
-    public void setNoOrdersMade(boolean noOrdersMade) {
-        this.noOrdersMade = noOrdersMade;
-    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -67,6 +80,38 @@ public class Customer implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override
@@ -90,7 +135,6 @@ public class Customer implements Serializable {
         result = 31 * result + getName().hashCode();
         result = 31 * result + getBillingAddress().hashCode();
         result = 31 * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
-        result = 31 * result + (isNoOrdersMade() ? 1 : 0);
         return result;
     }
 }

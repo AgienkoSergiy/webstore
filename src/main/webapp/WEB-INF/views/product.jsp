@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-    <script src="/webstore/resources/js/controllers.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/controllers.js"></script>
 
 <section>
         <div class="pull-right" style="padding-right:50px">

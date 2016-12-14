@@ -8,9 +8,19 @@ import java.util.List;
 public interface CustomerService {
     List<Customer> getAllCustomers();
 
-    public void saveCustomer(Customer customer);
+    void addCustomer(Customer customer);
 
-    public Customer getCustomer(String customerId);
+    Customer getCustomerById(Integer id);
 
-    public Boolean isCustomerExist(String customerId);
+    Customer getCustomerByEmail(String email);
+
+    Customer getCurrentCustomer();
+
+    void deleteCustomer(Integer id);
+
+    Boolean customerExists(String email);
+
+    void editCustomerInfo(Customer customer);
+
+    Boolean emailAvailable(String email);
 }

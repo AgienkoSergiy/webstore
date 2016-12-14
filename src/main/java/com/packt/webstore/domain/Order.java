@@ -1,19 +1,37 @@
 package com.packt.webstore.domain;
 
-import java.io.Serializable;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+
+
+@Entity
+@Table(name = "SHOPPING_ORDER")
 public class Order  implements Serializable{
 
 	private static final long serialVersionUID = -3560539622417210365L;
-	
+
+	@Id
+	@Column(name = "ID")
+	@GeneratedValue
 	private Long orderId;
+	@OneToOne
 	private Cart cart;
+	@OneToOne
 	private Customer customer;
-	private ShippingDetail shippingDetail;
+	@OneToOne(cascade = CascadeType.ALL)
+	private DeliveryInfo deliveryInfo;
+
+	@Column(name = "DELIVERY_DATE")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date oderDate;
 	
 	public Order() {
 		this.customer = new Customer();
-		this.shippingDetail = new ShippingDetail();
+		this.deliveryInfo = new DeliveryInfo();
 	}
 
 	public Long getOrderId() {
@@ -40,12 +58,20 @@ public class Order  implements Serializable{
 		this.customer = customer;
 	}
 
-	public ShippingDetail getShippingDetail() {
-		return shippingDetail;
+	public DeliveryInfo getDeliveryInfo() {
+		return deliveryInfo;
 	}
 
-	public void setShippingDetail(ShippingDetail shippingDetail) {
-		this.shippingDetail = shippingDetail;
+	public void setDeliveryInfo(DeliveryInfo deliveryInfo) {
+		this.deliveryInfo = deliveryInfo;
+	}
+
+	public Date getOderDate() {
+		return oderDate;
+	}
+
+	public void setOderDate(Date oderDate) {
+		this.oderDate = oderDate;
 	}
 
 	public static long getSerialversionuid() {

@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 @Component
-public class ProductIdValidator implements ConstraintValidator<ProductId, String> {
+public class ProductIdValidator implements ConstraintValidator<ProductId, Integer> {
     @Autowired
     private ProductService productService;
     public void initialize(ProductId constraintAnnotation) {
         // intentionally left blank; this is the place to initialize the constraint annotation for any sensible default values.
     }
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(Integer value, ConstraintValidatorContext context) {
         Product product;
         try {
             product = productService.getProductById(value);

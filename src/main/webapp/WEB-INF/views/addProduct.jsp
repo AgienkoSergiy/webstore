@@ -7,10 +7,10 @@
 
 <section>
     <div>
-        <a href="<c:url value="/j_spring_security_logout" />"
+        <a href="<c:url value="/logout"/>"
            class="btn btn-danger btn-mini pull-right">logout</a>
         <div class="pull-right" style="padding-right:50px">
-            <a href="?language=en" >English</a>|<a href="?language=nl">Dutch</a>
+            <a href="?language=en">English</a>|<a href="?language=nl">Dutch</a>
         </div>
         <div class="container">
             <h1>Products</h1>
@@ -25,14 +25,7 @@
         <form:errors path="*" cssClass="alert alert-danger" element="div"/>
     <fieldset>
         <legend>Add new product</legend>
-        <div class="form-group">
-            <label class="control-label col-lg-2 col-lg-2" for="productId">
-                <spring:message code="addProduct.form.newProductId.label"/></label>
-            <div class="col-lg-10">
-                <form:input id="productId" path="productId" type="text" class="form:input-large"/>
-                <form:errors path="productId" cssClass="text-danger"/>
-            </div>
-        </div>
+
         <div class="form-group">
             <label class="control-label col-lg-2 col-lg-2" for="name">
                 <spring:message code="addProduct.form.name.label"/>
@@ -122,9 +115,10 @@
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <input type="submit" id="btnAdd" class=
-                        "btn btn-primary" value ="Add"/>
+                        "btn btn-primary" value ="Add"/> <!--TODO tries to redirect to tile, not to a view(in some cases)-->
             </div>
         </div>
     </fieldset>
     </form:form>
 </section>
+

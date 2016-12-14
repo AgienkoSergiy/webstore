@@ -8,9 +8,17 @@ import java.util.List;
 public interface CustomerRepository {
     List<Customer> getAllCustomers();
 
-    public void saveCustomer(Customer customer);
+    Customer getCustomerById(Integer customerId);
 
-    public Customer getCustomer(String customerId);
+    Customer getCustomerByEmail(String email);
 
-    public Boolean isCustomerExist(String customerId);
+    Boolean customerExists(String email);
+
+    Boolean emailAvailable(String email);
+
+    void addCustomer(Customer customer);
+
+    void deleteCustomer(Integer id);
+
+    void editCustomerInfo(Customer customer);
 }

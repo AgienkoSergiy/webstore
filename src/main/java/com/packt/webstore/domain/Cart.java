@@ -1,22 +1,38 @@
 package com.packt.webstore.domain;
 
 
+
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Entity
+@Table(name = "CART")
 public class Cart implements Serializable {
 
     private static final long serialVersionUID =
             6350930334140807514L;
 
+    @Id
+    @Column(name = "ID")
     private String cartId;
-    private Map<String,CartItem> cartItems;
+
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    @MapKey(name = "product")
+    @JsonManagedReference
+    private Map<Product, CartItem> cartItems;
+
+    @Column(name = "GRAND_TOTAL")
     private BigDecimal grandTotal;
 
     public Cart() {
-        cartItems = new HashMap<String, CartItem>();
+        cartItems = new HashMap<>();
         grandTotal = new BigDecimal(0);
     }
 
@@ -33,11 +49,11 @@ public class Cart implements Serializable {
         this.cartId = cartId;
     }
 
-    public Map<String, CartItem> getCartItems() {
+    public Map<Product, CartItem> getCartItems() {
         return cartItems;
     }
 
-    public void setCartItems(Map<String, CartItem> cartItems) {
+    public void setCartItems(Map<Product, CartItem> cartItems) {
         this.cartItems = cartItems;
     }
 
@@ -46,21 +62,20 @@ public class Cart implements Serializable {
     }
 
     public void addCartItem(CartItem item) {
-        String productId = item.getProduct().getProductId();
+        Product product= item.getProduct();
 
-        if(cartItems.containsKey(productId)) {
-            CartItem existingCartItem = cartItems.get(productId);
-            existingCartItem.setQuantity(existingCartItem.getQuantity
-                    ()+ item.getQuantity());
-            cartItems.put(productId, existingCartItem);
+        if(cartItems.containsKey(product)) {
+            CartItem existingCartItem = cartItems.get(product);
+            existingCartItem.setQuantity(existingCartItem.getQuantity()+ item.getQuantity());
+            cartItems.put(product, existingCartItem);
         } else {
-            cartItems.put(productId, item);
+            cartItems.put(product, item);
         }
         updateGrandTotal();
     }
 
     public void removeCartItem(CartItem item) {
-        String productId = item.getProduct().getProductId();
+        Integer productId = item.getProduct().getProductId();
         cartItems.remove(productId);
         updateGrandTotal();
     }

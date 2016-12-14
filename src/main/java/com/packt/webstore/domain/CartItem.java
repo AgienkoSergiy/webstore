@@ -1,20 +1,39 @@
 package com.packt.webstore.domain;
 
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "CART_ITEM")
 public class CartItem implements Serializable {
 
     private static final long serialVersionUID =
             6350930334140807514L;
 
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    private Integer id;
+
+
+
+    @OneToOne  //TODO move annotations to getters defines
     private Product product;
+    @Column(name = "QUANTITY")
     private int quantity;
+    @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
 
+    @ManyToOne
+    @JsonBackReference
+    private Cart cart;
+
+
     public CartItem() {
-        // TODO Auto-generated constructor stub
     }
 
     public CartItem(Product product) {
@@ -23,6 +42,24 @@ public class CartItem implements Serializable {
         this.quantity = 1;
         this.totalPrice = product.getUnitPrice();
     }
+
+    public CartItem(Product product, Cart cart){
+        super();
+        this.product = product;
+        this.quantity = 1;
+        this.totalPrice = product.getUnitPrice();
+        this.cart=cart;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+
 
     public Product getProduct() {
         return product;
@@ -49,6 +86,15 @@ public class CartItem implements Serializable {
     public void updateTotalPrice() {
         totalPrice = this.product.getUnitPrice().multiply(
                 new BigDecimal(this.quantity));
+    }
+
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     @Override

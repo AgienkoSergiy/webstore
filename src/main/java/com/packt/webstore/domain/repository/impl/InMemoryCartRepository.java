@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@Repository
-public class InMemoryCartRepository implements CartRepository {
+@Deprecated
+public class InMemoryCartRepository {
 
     private Map<String, Cart> listOfCarts;
 

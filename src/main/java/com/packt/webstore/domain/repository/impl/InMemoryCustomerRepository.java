@@ -8,17 +8,17 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class InMemoryCustomerRepository implements CustomerRepository {
+@Deprecated
+public class InMemoryCustomerRepository {
 
 
     List<Customer> customersList = new ArrayList<Customer>();
 
     public InMemoryCustomerRepository(){
 
-        Customer misha = new Customer("C0001","Misha");
-        Customer vasya = new Customer("C0002", "Vasya");
-        Customer kolya = new Customer("C0003", "Kolya");
+        Customer misha = new Customer(1,"Misha");
+        Customer vasya = new Customer(2, "Vasya");
+        Customer kolya = new Customer(3, "Kolya");
 
         customersList.add(misha);
         customersList.add(vasya);
@@ -29,7 +29,6 @@ public class InMemoryCustomerRepository implements CustomerRepository {
         return customersList;
     }
 
-    @Override
     public void saveCustomer(Customer customer) {
         for (Customer user :
                 customersList) {
@@ -42,8 +41,7 @@ public class InMemoryCustomerRepository implements CustomerRepository {
         customersList.add(customer);
     }
 
-    @Override
-    public Customer getCustomer(String customerId) {
+    public Customer getCustomer(Integer customerId) {
         for (Customer customer:
              customersList) {
             if(customer.getCustomerId().equals(customerId))
@@ -52,8 +50,7 @@ public class InMemoryCustomerRepository implements CustomerRepository {
         return null;
     }
 
-    @Override
-    public Boolean isCustomerExist(String customerId) {
+    public Boolean customerExists(Integer customerId) {
 
         for (Customer customer :
                 customersList) {
@@ -61,5 +58,17 @@ public class InMemoryCustomerRepository implements CustomerRepository {
              return true;
         }
         return false;
+    }
+
+    public void addCustomer(Customer customer) {
+
+    }
+
+    public void deleteCustomer(Integer id) {
+
+    }
+
+    public void editCustomerInfo(Customer customer) {
+
     }
 }

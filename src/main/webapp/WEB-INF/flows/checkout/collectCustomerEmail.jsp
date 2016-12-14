@@ -21,12 +21,12 @@
 <section class="container">
     <form:form modelAttribute="order.customer" class="form-horizontal">
         <fieldset>
-            <legend>Customer's ID</legend>
+            <legend>Enter your E-mail:</legend>
 
             <div class="form-group">
-                <label class="control-label col-lg-2 col-lg-2" for="customerId" />Customer's ID</label>
+                <label class="control-label col-lg-2 col-lg-2" for="email" />E-mail</label>
                 <div class="col-lg-10">
-                    <form:input id="customerId" path="customerId" type="text" class="form:input-large" />
+                    <form:input id="email" path="email" type="text" class="form:input-large" />
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <input type="submit" id="btnAdd" class="btn btn-primary"
-                           value="Add" name="_eventId_customerIDCollected" />
+                           value="Yes" name="_eventId_customerEmailCollected" />
                     <button id="btnCancel" class="btn btn-default" name="_eventId_cancel">Cancel</button>
                 </div>
             </div>

@@ -6,8 +6,8 @@
 <html>
 <head>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-    <script src="/webstore/resources/js/controllers.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/controllers.js"></script>
 
 
 
@@ -20,7 +20,8 @@
             <a class="btn btn-danger pull-left" ng-click="clearCart()">
                 <span class="glyphicon glyphicon-remove-sign"></span>
                 Clear Cart
-            </a> <a href="<spring:url value="/checkout?cartId=${cartId}"/>"
+            </a>
+            <a href="<spring:url value="/checkout?cartId=${cartId}"/>"
                     class="btn btn-success pull-right">
             <span class="glyphicon-shopping-cart glyphicon"></span>
             Check out
@@ -40,7 +41,7 @@
                 <td>{{item.quantity}}</td>
                 <td>{{item.totalPrice}}</td>
                 <td><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)">
-                    <span class="glyphicon glyphicon-remove" /></span> Remove
+                    <span class="glyphicon glyphicon-remove"></span> Remove
                 </a></td>
             </tr>
             <tr>
