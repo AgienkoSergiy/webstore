@@ -5,6 +5,8 @@ import com.packt.webstore.domain.repository.CustomerRepository;
 import com.packt.webstore.service.CustomerService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +40,12 @@ public class CustomerServiceImpl implements CustomerService {
 
         logger.debug("Retrieving customer with email "+email);
         return customerRepository.getCustomerByEmail(email);
+    }
+
+    @Override
+    public Customer getCurrentCustomer() {
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return getCustomerByEmail(user.getUsername());
     }
 
     @Override

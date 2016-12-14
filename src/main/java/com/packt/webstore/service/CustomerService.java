@@ -14,6 +14,8 @@ public interface CustomerService {
 
     Customer getCustomerByEmail(String email);
 
+    Customer getCurrentCustomer();
+
     void deleteCustomer(Integer id);
 
     Boolean customerExists(String email);

@@ -13,7 +13,7 @@ public class CategoryValidator implements ConstraintValidator<Category, String> 
 
     List<String> allowedCategories;
 
-    CategoryValidator(){
+    public CategoryValidator(){
         allowedCategories = new ArrayList<>();
         allowedCategories.add("smart phone");
         allowedCategories.add("laptop");
