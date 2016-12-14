@@ -1,6 +1,6 @@
 package com.packt.webstore.domain;
 
-import com.packt.webstore.validator.Category;
+import com.packt.webstore.validator.CategoryValidated;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,9 +46,10 @@ public class Product implements Serializable {
 
 
     @NotEmpty(message = "{NotEmpty.Product.category.validation}")
-    @Category
-    @Column(name = "CATEGORY")
-    private String category;
+    @CategoryValidated
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "CATEGORY_ID")
+    private Category category;
 
 
     private static final long serialVersionUID =
@@ -118,11 +119,11 @@ public class Product implements Serializable {
         this.manufacturer = manufacturer;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

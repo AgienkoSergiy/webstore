@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CategoryValidator implements ConstraintValidator<Category, String> {
+public class CategoryValidator implements ConstraintValidator<CategoryValidated, String> {
 
     List<String> allowedCategories;
 
@@ -20,7 +20,7 @@ public class CategoryValidator implements ConstraintValidator<Category, String> 
         allowedCategories.add("tablet");
     }
 
-    public void initialize(Category constraintAnnotation) {
+    public void initialize(CategoryValidated constraintAnnotation) {
 
     }
     public boolean isValid(String value, ConstraintValidatorContext context) {

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Repository
 public class MySQLCartRepository implements CartRepository {
@@ -35,10 +36,11 @@ public class MySQLCartRepository implements CartRepository {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Cart where id = :id");
         query.setParameter("id", cartId);
-        if (query.list().isEmpty()){
+        List<Cart> qeryList = query.list();
+        if (qeryList.isEmpty()){
             return null;
         }
-        return (Cart) query.list().get(0);
+        return qeryList.get(0);
     }
 
     @Override

@@ -15,8 +15,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Constraint(validatedBy = CategoryValidator.class)
 @Documented
-public @interface Category {
-    String message() default "{com.packt.webstore.validator.Category.message}";
+public @interface CategoryValidated {
+    String message() default "{com.packt.webstore.validator.CategoryValidated.message}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default{};
 }

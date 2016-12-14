@@ -8,14 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     @RequestMapping("/")
     public String welcome(Model model){
+
         model.addAttribute("greeting", "Welcome to Web Store!");
         model.addAttribute("tagline", "The one and only amazing webstore");
 
-        return "welcome";
+        return "home_v2.00";
     }
 
-    @RequestMapping("/welcome/greeting")
-    public String greeting() {
-        return "welcome";
-    }
 }

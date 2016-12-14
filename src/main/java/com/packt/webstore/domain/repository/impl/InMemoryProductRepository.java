@@ -16,7 +16,7 @@ public class InMemoryProductRepository {
                 BigDecimal(500));
         iphone.setDescription("Apple iPhone 5s smartphone with 4.00-inch" +
                 " 640x1136 display and 8-megapixel rear camera");
-        iphone.setCategory("Smart Phone");
+        //iphone.setCategory("Smart Phone");
         iphone.setManufacturer("Apple");
         iphone.setUnitsInStock(1000);
 
@@ -24,7 +24,7 @@ public class InMemoryProductRepository {
                 BigDecimal(700));
         laptop_dell.setDescription("Dell Inspiron 14-inch Laptop(Black)" +
                 " with 3rd Generation Intel Core processors");
-        laptop_dell.setCategory("Laptop");
+        //laptop_dell.setCategory("Laptop");
         laptop_dell.setManufacturer("Dell");
         laptop_dell.setUnitsInStock(1000);
 
@@ -32,7 +32,7 @@ public class InMemoryProductRepository {
                 BigDecimal(300));
         tablet_Nexus.setDescription("Google Nexus 7 is the lightest 7 inch" +
                 " tablet With a quad-core Qualcomm Snapdragon™ S4 Pro processor");
-        tablet_Nexus.setCategory("Tablet");
+       // tablet_Nexus.setCategory("Tablet");
         tablet_Nexus.setManufacturer("Google");
         tablet_Nexus.setUnitsInStock(1000);
 
@@ -50,12 +50,12 @@ public class InMemoryProductRepository {
     public List<Product> getProductsByCategory(String category) {
         List<Product> productsByCategory = new ArrayList<>();
 
-        for (Product product :
+        /*for (Product product :
                 listOfProducts) {
             if (category.equalsIgnoreCase(product.getCategory())){
                 productsByCategory.add(product);
             }
-        }
+        }*/
         return productsByCategory;
     }
 

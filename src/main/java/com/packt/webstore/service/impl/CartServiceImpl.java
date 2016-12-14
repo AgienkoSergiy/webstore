@@ -2,7 +2,7 @@ package com.packt.webstore.service.impl;
 
 
 import com.packt.webstore.domain.Cart;
-import com.packt.webstore.domain.repository.CartItemsRepository;
+import com.packt.webstore.domain.repository.CartItemRepository;
 import com.packt.webstore.domain.repository.CartRepository;
 import com.packt.webstore.exception.InvalidCartException;
 import com.packt.webstore.service.CartService;
@@ -18,7 +18,7 @@ public class CartServiceImpl implements CartService {
     private CartRepository cartRepository;
 
     @Autowired
-    private CartItemsRepository cartItemsRepository;
+    private CartItemRepository cartItemRepository;  //TODO test&remake cart operations in private cabinet (Sprint#3)
 
     public Cart create(Cart cart) {
         return cartRepository.create(cart);

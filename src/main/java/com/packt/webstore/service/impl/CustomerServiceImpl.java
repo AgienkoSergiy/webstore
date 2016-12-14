@@ -23,21 +23,18 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> getAllCustomers() {
-
         logger.debug("Retrieving all customers");
         return customerRepository.getAllCustomers();
     }
 
     @Override
     public Customer getCustomerById(Integer id) {
-
         logger.debug("Retrieving customer with id="+id);
         return customerRepository.getCustomerById(id);
     }
 
     @Override
     public Customer getCustomerByEmail(String email) {
-
         logger.debug("Retrieving customer with email "+email);
         return customerRepository.getCustomerByEmail(email);
     }

@@ -30,8 +30,6 @@ public class Customer implements Serializable {
     @Column(name = "ENABLED")
     private Boolean enabled;
 
-
-
     public Customer() {
         super();
         this.billingAddress = new Address();
@@ -60,7 +58,6 @@ public class Customer implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
