@@ -20,6 +20,9 @@ public class Category implements Serializable {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "KEY")
+    private String restKey;
+
     @OneToMany(mappedBy = "category")
     private List<Product> products;
 
@@ -44,6 +47,14 @@ public class Category implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRestKey() {
+        return restKey;
+    }
+
+    public void setRestKey(String restKey) {
+        this.restKey = restKey;
     }
 
     public List<Product> getProducts() {

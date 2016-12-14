@@ -36,6 +36,7 @@ public class MySQLCategoryRepositoryImpl implements CategoryRepository {
         Category existingCategory = read(category.getId());
         Session session = sessionFactory.getCurrentSession();
         existingCategory.setName(category.getName());
+        existingCategory.setRestKey(category.getRestKey());
         session.save(existingCategory);
     }
 

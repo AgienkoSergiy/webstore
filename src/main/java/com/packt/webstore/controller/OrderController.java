@@ -8,8 +8,13 @@ import com.packt.webstore.service.OrderService;
 @Controller
 public class OrderController {
 
-    @Autowired
+
     private OrderService orderService;
+
+    @Autowired
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @RequestMapping("/order/P1234/2")
     public String process() {

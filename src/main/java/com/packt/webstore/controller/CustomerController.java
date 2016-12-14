@@ -14,10 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CustomerController {
 
-    @Autowired
+
     private CustomerService customerService;
 
     protected static Logger logger = Logger.getLogger("Customer_controller");
+
+    @Autowired
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
     public String customers(Model model){

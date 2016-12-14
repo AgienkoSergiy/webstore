@@ -23,11 +23,19 @@ import com.packt.webstore.service.ProductService;
 @RequestMapping(value = "rest/cart")
 public class CartRestController {
 
-    @Autowired
+
     private CartService cartService;
+    private ProductService productService;
 
     @Autowired
-    private ProductService productService;
+    public void setCartService(CartService cartService) {
+        this.cartService = cartService;
+    }
+
+    @Autowired
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody Cart create(@RequestBody Cart cart) {

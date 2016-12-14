@@ -28,11 +28,19 @@ import java.util.Set;
 @RequestMapping("/products")
 public class ProductController {
 
-    @Autowired
+
     private ProductService productService;
+    private ProductValidator productValidator;
 
     @Autowired
-    private ProductValidator productValidator;
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @Autowired
+    public void setProductValidator(ProductValidator productValidator) {
+        this.productValidator = productValidator;
+    }
 
     @RequestMapping
     public String list(Model model) {

@@ -12,7 +12,7 @@
         <c:forEach items="${products}" var="product">
             <div class="col-sm-6 col-md-3" style="padding-bottom:15px">
                 <div class="thumbnail">
-                    <img src="<c:url value="/resources/images/${product.productId}.png"></c:url>"
+                    <img src="<c:url value="/resources/images/${product.productId}.png"/>"
                          alt="image" style = "width:100%"/>
                     <div class="caption">
                         <h3>${product.name}</h3>
@@ -23,7 +23,7 @@
                         <p>
                             <a href=" <spring:url value="/products/product?id=${product.productId}" /> "
                                class="btn btn-primary">
-                                <span class="glyphicon-info-sign glyphicon"/></span> Details
+                                <span class="glyphicon-info-sign glyphicon">Details</span>
                             </a>
                         </p>
                     </div>

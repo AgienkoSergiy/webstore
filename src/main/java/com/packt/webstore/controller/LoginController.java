@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
+
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public String login(HttpSession session) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

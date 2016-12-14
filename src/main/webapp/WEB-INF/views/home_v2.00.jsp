@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,13 +12,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>Web Store Homepage</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="${pageContext.request.contextPath}/resources/css/shop-homepage.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,11 +68,7 @@
 
     <div class="row">
 
-        <div class="col-md-3">
             <p class="lead">Raisin Web Store</p>
-        </div>
-
-        <div class="col-md-9">
 
             <div class="row carousel-holder">
 
@@ -102,12 +101,17 @@
 
             </div>
 
-            <div class="list-group">
-                <a href="#" class="list-group-item">Category 1</a>
-                <a href="#" class="list-group-item">Category 2</a>
-                <a href="#" class="list-group-item">Category 3</a>
+            <div class="row">  <%--TODO <ul></ul>?--%>
+                <div class="col-md-12" style="margin-bottom: 20px;">
+                    <c:forEach items="${categories}" var="category">
+                        <div class="col-md-2 cat-button col-sm-2">
+                            <a href="<spring:url value="/products/${category.restKey}"/>">${category.name}</a>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
 
+        <p class="lead">Best Sellers</p>
             <div class="row">
 
                 <div class="col-sm-4 col-lg-4 col-md-4">
@@ -221,15 +225,27 @@
                 </div>
 
                 <div class="col-sm-4 col-lg-4 col-md-4">
-                    <h4><a href="#">Like this template?</a>
-                    </h4>
-                    <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
-                    <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
+                    <div class="thumbnail">
+                        <img src="http://placehold.it/320x150" alt="">
+                        <div class="caption">
+                            <h4 class="pull-right">$24.99</h4>
+                            <h4><a href="#">First Product</a>
+                            </h4>
+                            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                        </div>
+                        <div class="ratings">
+                            <p class="pull-right">15 reviews</p>
+                            <p>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
-        </div>
 
     </div>
 
@@ -243,6 +259,9 @@
     <!-- Footer -->
     <footer>
         <div class="row">
+            <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
+            <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
+
             <div class="col-lg-12">
                 <p>Copyright &copy; Your Website 2014</p>
             </div>

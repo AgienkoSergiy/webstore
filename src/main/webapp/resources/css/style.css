@@ -49,6 +49,17 @@ body {
     color: #333;
 }
 
+.cat-button {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: rgba(86,61,124,.15);
+    text-align: center;
+}
+.cat-button:hover{
+    background-color: rgba(86, 61, 124, 0.31);
+    text-decoration: none;
+}
+
 footer {
     margin: 50px 0;
 }

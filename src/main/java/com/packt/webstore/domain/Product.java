@@ -51,15 +51,11 @@ public class Product implements Serializable {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-
-    private static final long serialVersionUID =
-            6350930334140807514L;
+    //TODO add Map<String, String> characteristics sprint#2
 
     @Column(name = "UNITS_IN_STOCK")
     private long unitsInStock;
 
-    @Column(name = "COND")
-    private String condition;
     @Transient
     @JsonIgnore
     private MultipartFile productImage;
@@ -67,7 +63,8 @@ public class Product implements Serializable {
     @JsonIgnore
     private MultipartFile productManual;
 
-
+    private static final long serialVersionUID =
+            6350930334140807514L;
 
     public Product() {
         super();
@@ -135,13 +132,6 @@ public class Product implements Serializable {
         this.unitsInStock = unitsInStock;
     }
 
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
     @XmlTransient
     public MultipartFile getProductImage() {
         return productImage;

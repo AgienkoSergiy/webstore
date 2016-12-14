@@ -1,6 +1,9 @@
 package com.packt.webstore.validator;
 
 
+import com.packt.webstore.domain.Category;
+import com.packt.webstore.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintValidator;
@@ -11,22 +14,29 @@ import java.util.List;
 @Component
 public class CategoryValidator implements ConstraintValidator<CategoryValidated, String> {
 
-    List<String> allowedCategories;
+    private CategoryService categoryService;
+
+    private List<String> allowedCategories;
 
     public CategoryValidator(){
-        allowedCategories = new ArrayList<>();
-        allowedCategories.add("smart phone");
-        allowedCategories.add("laptop");
-        allowedCategories.add("tablet");
+        List<Category> categories = categoryService.getAllCategories();
+        allowedCategories=new ArrayList<>();
+        for(Category category: categories){
+            allowedCategories.add(category.getName().toLowerCase());
+        }
+    }
+    @Autowired
+    public void setProductService(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
+    @Override
     public void initialize(CategoryValidated constraintAnnotation) {
 
     }
+    @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
 
-        if(!value.isEmpty())
-            return allowedCategories.contains(value.toLowerCase());
-        return true;
+        return value.isEmpty() || allowedCategories.contains(value.toLowerCase());
     }
 }
