@@ -34,7 +34,7 @@ public class MySQLProductRepository implements ProductRepository {
 
         Session session = sessionFactory.getCurrentSession();
 
-        Query query = session.createQuery("from Product where category = :productType");
+        Query query = session.createQuery("from Product where category.restKey = :productType");
         query.setParameter("productType",productCategory);
 
         return query.list();

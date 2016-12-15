@@ -17,7 +17,7 @@ public class Order  implements Serializable{
 	@Column(name = "ID")
 	@GeneratedValue
 	private Long orderId;
-	@OneToOne
+	@OneToOne(mappedBy = "order")
 	private Cart cart;
 	@OneToOne
 	private Customer customer;
