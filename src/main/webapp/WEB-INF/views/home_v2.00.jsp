@@ -68,9 +68,20 @@
 
     <div class="row">
 
-            <p class="lead">Raisin Web Store</p>
+        <p class="lead">Raisin Web Store logo big</p>
+        <br><br><br><br><br><br>
 
-            <div class="row carousel-holder">
+        <div class="row">  <%--TODO <ul></ul>?--%>
+            <div class="col-md-12" style="margin-bottom: 20px;">
+                <c:forEach items="${categories}" var="category">
+                    <div class="col-md-2 cat-button col-sm-2">
+                        <a href="<spring:url value="/products/${category.restKey}"/>">${category.name}</a>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+
+        <div class="row carousel-holder">
 
                 <div class="col-md-12">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -99,16 +110,6 @@
                     </div>
                 </div>
 
-            </div>
-
-            <div class="row">  <%--TODO <ul></ul>?--%>
-                <div class="col-md-12" style="margin-bottom: 20px;">
-                    <c:forEach items="${categories}" var="category">
-                        <div class="col-md-2 cat-button col-sm-2">
-                            <a href="<spring:url value="/products/${category.restKey}"/>">${category.name}</a>
-                        </div>
-                    </c:forEach>
-                </div>
             </div>
 
         <p class="lead">Best Sellers</p>

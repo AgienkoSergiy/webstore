@@ -20,7 +20,7 @@ public class Category implements Serializable {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "KEY")
+    @Column(name = "REST_KEY")
     private String restKey;
 
     @OneToMany(mappedBy = "category")

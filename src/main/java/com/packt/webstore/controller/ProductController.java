@@ -48,12 +48,6 @@ public class ProductController {
         return "products";
     }
 
-    @RequestMapping("/all")
-    public String allProducts(Model model){
-        model.addAttribute("products", productService.getAllProducts());
-
-        return "products";
-    }
 
     @RequestMapping("/{category}")
     public String getProductsByCategory(Model model,

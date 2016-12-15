@@ -18,13 +18,6 @@ public class CategoryValidator implements ConstraintValidator<CategoryValidated,
 
     private List<String> allowedCategories;
 
-    public CategoryValidator(){
-        List<Category> categories = categoryService.getAllCategories();
-        allowedCategories=new ArrayList<>();
-        for(Category category: categories){
-            allowedCategories.add(category.getName().toLowerCase());
-        }
-    }
     @Autowired
     public void setProductService(CategoryService categoryService) {
         this.categoryService = categoryService;
@@ -32,7 +25,11 @@ public class CategoryValidator implements ConstraintValidator<CategoryValidated,
 
     @Override
     public void initialize(CategoryValidated constraintAnnotation) {
-
+        List<Category> categories = categoryService.getAllCategories();
+        allowedCategories=new ArrayList<>();
+        for(Category category: categories){
+            allowedCategories.add(category.getName().toLowerCase());
+        }
     }
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
