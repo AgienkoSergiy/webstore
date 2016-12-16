@@ -7,6 +7,7 @@ import com.packt.webstore.domain.repository.CategoryRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -59,8 +60,10 @@ public class MySQLCategoryRepositoryImpl implements CategoryRepository {
         return queryList;
     }
 
+    @Cacheable(value = "categoriesCache")
     @Override
     public List<Category> getAllCategories() {
+        System.out.println("++++++++++++++++++++++++add categories list");
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Category");
         return query.list();

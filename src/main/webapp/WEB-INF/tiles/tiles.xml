@@ -22,11 +22,11 @@
         <put-attribute name="content" value="/WEB-INF/views/home.jsp" />
     </definition>
 
-    <definition name="products" extends="baseLayout">
+    <definition name="products_prev" extends="baseLayout">
         <put-attribute name="title" value="Products" />
         <put-attribute name="heading" value="Products" />
         <put-attribute name="tagline" value="Available Products" />
-        <put-attribute name="content" value="/WEB-INF/views/products.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/products_prev.jsp" />
     </definition>
 
     <definition name="product" extends="baseLayout">

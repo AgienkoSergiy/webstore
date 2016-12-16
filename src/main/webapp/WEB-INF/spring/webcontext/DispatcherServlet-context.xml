@@ -4,6 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:webflow-config="http://www.springframework.org/schema/webflow-config"
        xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:cache="http://www.springframework.org/schema/cache"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/mvc
@@ -11,7 +12,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/webflow-config
-       http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
     <mvc:annotation-driven enable-matrix-variables="true" validator="validator"/>
     <mvc:resources location="/resources/"  mapping="/resources/**"/>
@@ -23,6 +24,15 @@
                                       id="checkout"/>
     </webflow-config:flow-registry>
 
+    <cache:annotation-driven/>
+
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehcache"/>
+    </bean>
+    <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="/WEB-INF/ehcache/ehcache.xml"/>
+        <property name="shared" value="true"/>
+    </bean>
 
     <mvc:interceptors>
         <bean class="com.packt.webstore.interceptor.PerformanceMonitorInterceptor"/>
@@ -32,6 +42,8 @@
         </bean>
 
         <bean class="com.packt.webstore.interceptor.AuditingInterceptor"/>
+
+        <bean class="com.packt.webstore.interceptor.CategoriesListInterceptor"/>
 
         <bean class="com.packt.webstore.interceptor.PromoCodeInterceptor">
             <property name="promoCode" value="OFF3R"/>
