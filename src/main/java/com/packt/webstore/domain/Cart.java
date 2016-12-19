@@ -31,7 +31,7 @@ public class Cart implements Serializable {
     @Column(name = "GRAND_TOTAL")
     private BigDecimal grandTotal;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
     private Order order;
 
 

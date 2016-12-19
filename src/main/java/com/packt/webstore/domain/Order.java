@@ -19,7 +19,7 @@ public class Order  implements Serializable{
 	private Long orderId;
 	@OneToOne(mappedBy = "order")
 	private Cart cart;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Customer customer;
 	@OneToOne(cascade = CascadeType.ALL)
 	private DeliveryInfo deliveryInfo;

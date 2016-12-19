@@ -24,9 +24,7 @@ public class CartServiceImpl implements CartService {
         return cartRepository.create(cart);
     }
     public Cart read(String cartId) {
-        if(cartRepository.read(cartId)==null){
-            return null;
-        }
+
         Cart cart = cartRepository.read(cartId);
         return cart;
     }
