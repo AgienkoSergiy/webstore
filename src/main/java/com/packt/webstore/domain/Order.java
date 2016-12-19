@@ -17,9 +17,9 @@ public class Order  implements Serializable{
 	@Column(name = "ID")
 	@GeneratedValue
 	private Long orderId;
-	@OneToOne(mappedBy = "order")
+	@OneToOne
 	private Cart cart;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Customer customer;
 	@OneToOne(cascade = CascadeType.ALL)
 	private DeliveryInfo deliveryInfo;

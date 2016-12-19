@@ -115,9 +115,8 @@ public class MySQLProductRepository implements ProductRepository {
     public Product getProductById(Integer Id){
 
         Session session = sessionFactory.getCurrentSession();
-        Product product = (Product) session.load(Product.class,Id);
-        Hibernate.initialize(product);
-        return product;
+
+        return (Product) session.get(Product.class,Id);
     }
 
     @Override

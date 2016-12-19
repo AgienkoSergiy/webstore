@@ -31,15 +31,9 @@ public class Cart implements Serializable {
     @Column(name = "GRAND_TOTAL")
     private BigDecimal grandTotal;
 
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    private Order order;
-
-
-
     public Cart() {
         cartItems = new HashMap<>();
         grandTotal = new BigDecimal(0);
-        order = new Order();
     }
 
     public Cart(String cartId) {
@@ -65,14 +59,6 @@ public class Cart implements Serializable {
 
     public BigDecimal getGrandTotal() {
         return grandTotal;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public void addCartItem(CartItem item) {
@@ -125,7 +111,5 @@ public class Cart implements Serializable {
             return false;
         return true;
     }
-
-
 }
 
