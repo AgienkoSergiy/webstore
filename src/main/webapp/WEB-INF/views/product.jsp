@@ -32,7 +32,7 @@
             </p>
             <p>
                 <strong><spring:message code="product.category"/> </strong> :
-                 ${product.category}
+                 ${product.category.name}
             </p>
             <p>
                 <strong><spring:message code="product.unitsInStock"/> </strong> :

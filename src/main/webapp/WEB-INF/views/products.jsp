@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -89,33 +90,34 @@
         </c:otherwise>
     </c:choose>
 
-    <div class="row">
-        <c:forEach items="${products}" var="product">
-           <%-- <c:forEach begin="1" end="3" varStatus="loop">
-                <p>loop:${loop.index}</p>--%>
-                <div class="col-sm-6 col-md-3" style="padding-bottom:15px">
-                    <div class="thumbnail">
-                        <img src="<c:url value="/resources/images/${product.productId}.png"/>"
-                             alt="image" style = "width:100%"/>
-                        <div class="caption">
-                            <h3>${product.manufacturer} ${product.name}</h3>
-                            <p>$${product.unitPrice}</p>
-                            <p>Available ${product.unitsInStock} units in
-                                stock</p>
-                            <p>
-                                <a href=" <spring:url value="/products/product?id=${product.productId}" /> "
-                                   class="btn btn-primary">
-                                    <span class="glyphicon-info-sign glyphicon">Details</span>
-                                </a>
-                            </p>
-                        </div>
+    <section id="products_list">
+        <c:forEach items="${products}" var="product" varStatus="rowCounter">
+            <c:if test="${rowCounter.count % 3 == 1|| rowCounter.count==1}">
+                <div class="row">
+            </c:if>
+            <div class="col-sm-4 col-md-4 col-lg-4"  style="padding-bottom:15px">
+                <div class="thumbnail">
+                    <img src="<c:url value="/resources/images/${product.productId}.png"/>"
+                         alt="image" style = "width:100%"/>
+                    <div class="caption">
+                        <h3>${product.manufacturer} ${product.name}</h3>
+                        <p>$${product.unitPrice}</p>
+                        <p>Available ${product.unitsInStock} units in
+                            stock</p>
+                        <p>
+                            <a href=" <spring:url value="/products/product?id=${product.productId}" /> "
+                               class="btn btn-primary">
+                                <span class="glyphicon-info-sign glyphicon">Details</span>
+                            </a>
+                        </p>
                     </div>
                 </div>
-           <%-- </c:forEach>--%>
-        </c:forEach>
-    </div>
-
-
+            </div>
+            <c:if test="${rowCounter.count % 3 == 0||rowCounter.count == fn:length(products)}">
+                </div>
+            </c:if>
+        </c:forEach >
+    </section>
 
 </div>
 <!-- /.container -->

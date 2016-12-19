@@ -3,6 +3,7 @@ package com.packt.webstore.domain.repository.impl;
 
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.domain.repository.ProductRepository;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -114,8 +115,9 @@ public class MySQLProductRepository implements ProductRepository {
     public Product getProductById(Integer Id){
 
         Session session = sessionFactory.getCurrentSession();
-
-        return (Product) session.get(Product.class,Id);
+        Product product = (Product) session.load(Product.class,Id);
+        Hibernate.initialize(product);
+        return product;
     }
 
     @Override

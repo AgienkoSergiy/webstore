@@ -47,7 +47,7 @@ public class Product implements Serializable {
 
     @NotEmpty(message = "{NotEmpty.Product.category.validation}")
     @CategoryValidated
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 

@@ -39,6 +39,7 @@ public class Cart implements Serializable {
     public Cart() {
         cartItems = new HashMap<>();
         grandTotal = new BigDecimal(0);
+        order = new Order();
     }
 
     public Cart(String cartId) {
