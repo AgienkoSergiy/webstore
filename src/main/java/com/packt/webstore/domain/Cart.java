@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Entity
 @Table(name = "CART")
-public class Cart implements Serializable {
+public class Cart implements Serializable {  //TODO rebuild cart Sprint#3
 
     private static final long serialVersionUID =
             6350930334140807514L;

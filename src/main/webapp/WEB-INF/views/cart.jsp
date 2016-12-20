@@ -35,20 +35,31 @@
                 <th>Price</th>
                 <th>Action</th>
             </tr>
-            <tr ng-repeat="item in cart.cartItems">
-                <td>{{item.product.productId}}-{{item.product.name}}</td>
-                <td>{{item.product.unitPrice}}</td>
-                <td>{{item.quantity}}</td>
-                <td>{{item.totalPrice}}</td>
-                <td><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)">
-                    <span class="glyphicon glyphicon-remove"></span> Remove
-                </a></td>
-            </tr>
+            <%--<tr ng-repeat="item in cart.cartItems">  TODO hotfix cart issue#1 --%>
+                <%--<td>{{item.product.productId}}-{{item.product.name}}</td>--%>
+                <%--<td>{{item.product.unitPrice}}</td>--%>
+                <%--<td>{{item.quantity}}</td>--%>
+                <%--<td>{{item.totalPrice}}</td>--%>
+                <%--<td><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)">--%>
+                    <%--<span class="glyphicon glyphicon-remove"></span> Remove--%>
+                <%--</a></td>--%>
+            <%--</tr>--%>
+            <c:forEach items="${cart.cartItems}" var="cartItem">
+                <tr>
+                    <td>${cartItem.key.manufacturer} ${cartItem.key.name}</td>
+                    <td>${cartItem.key.unitPrice}</td>
+                    <td>${cartItem.value.quantity}</td>
+                    <td>${cartItem.value.totalPrice}</td>
+                    <td><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)">
+                        <span class="glyphicon glyphicon-remove"></span> Remove
+                    </a></td>
+                </tr>
+            </c:forEach>
             <tr>
                 <th></th>
                 <th></th>
                 <th>Grand Total</th>
-                <th>{{cart.grandTotal}}</th>
+                <th>${cart.grandTotal}</th>
                 <th></th>
             </tr>
         </table>
