@@ -3,6 +3,7 @@ package com.packt.webstore.controller;
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.exception.NoProductsFoundUnderCategoryException;
 import com.packt.webstore.exception.ProductNotFoundException;
+import com.packt.webstore.service.CategoryService;
 import com.packt.webstore.service.ProductService;
 import com.packt.webstore.validator.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class ProductController {
 
     private ProductService productService;
     private ProductValidator productValidator;
+    private CategoryService categoryService;
 
     @Autowired
     public void setProductService(ProductService productService) {
@@ -41,6 +43,10 @@ public class ProductController {
         this.productValidator = productValidator;
     }
 
+    @Autowired
+    public void setCategoryService(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @RequestMapping
     public String list(Model model) {
@@ -59,7 +65,7 @@ public class ProductController {
             throw new NoProductsFoundUnderCategoryException();
         }
 
-        model.addAttribute("currentCategory",productCategory);
+        model.addAttribute("currentCategory",categoryService.getNameByKey(productCategory));
         model.addAttribute("products",products);
         return "products";
     }

@@ -19,38 +19,10 @@
 		<transition to="getCustomer" />
 	</action-state>
 
-	<!--
-    <view-state id="logIn" view="collectCustomerEmail.jsp" model="order">
-        <transition on="customerEmailCollected" to ="checkCustomerExists"/>
-    </view-state>
-
-    <decision-state id="checkCustomerExists">
-        <if test="customerServiceImpl.customerExists(order.customer.email)"
-            then="prefillCustomerInfo"
-            else="collectCustomerInfo"/>
-    </decision-state>
-
-
-
-
-
-    <action-state id="saveCustomerInfo">
-        <evaluate expression="customerServiceImpl.addCustomer(order.customer)"/>
-        <transition to="collectDeliveryDetails"/>
-    </action-state>
-	-->
-
-
 	<action-state id="getCustomer">
 		<evaluate expression="customerServiceImpl.getCurrentCustomer()" result="order.customer"/>
-		<transition to="collectCustomerInfo" />
+		<transition to="collectDeliveryDetails" />
 	</action-state>
-
-
-
-	<view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="order">
-		<transition on="customerInfoCollected" to="collectDeliveryDetails" />
-	</view-state>
 
 	<view-state id="collectDeliveryDetails" model="order">
 		<transition on="deliveryDetailsCollected" to="orderConfirmation" />

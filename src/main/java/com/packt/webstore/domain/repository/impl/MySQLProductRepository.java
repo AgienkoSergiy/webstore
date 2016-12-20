@@ -3,7 +3,6 @@ package com.packt.webstore.domain.repository.impl;
 
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.domain.repository.ProductRepository;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,12 +30,12 @@ public class MySQLProductRepository implements ProductRepository {
     }
 
     @Override
-    public List<Product> getProductsByCategory(String productCategory) {
+    public List<Product> getProductsByCategory(String restKey) {
 
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("from Product where category.restKey = :productType");
-        query.setParameter("productType",productCategory);
+        query.setParameter("productType", restKey);
 
         return query.list();
     }

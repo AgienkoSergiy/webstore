@@ -14,4 +14,5 @@ public interface CategoryRepository {
     void delete(Integer id);
     List<Product> getCategoryProducts(Category category);
     List<Category> getAllCategories();
+    String getNameByKey(String key);
 }

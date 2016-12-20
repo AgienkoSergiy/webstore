@@ -19,14 +19,14 @@
         <put-attribute name="title" value="Welcome" />
         <put-attribute name="heading" value="Welcome" />
         <put-attribute name="tagline" value="The one and amazing webstore in the whole universe!" />
-        <put-attribute name="content" value="/WEB-INF/views/home.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/tmp/home.jsp" />
     </definition>
 
     <definition name="products_prev" extends="baseLayout">
         <put-attribute name="title" value="Products" />
         <put-attribute name="heading" value="Products" />
         <put-attribute name="tagline" value="Available Products" />
-        <put-attribute name="content" value="/WEB-INF/views/products_prev.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/tmp/products_prev.jsp" />
     </definition>
 
     <definition name="product" extends="baseLayout">

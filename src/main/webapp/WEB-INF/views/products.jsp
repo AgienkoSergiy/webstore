@@ -43,20 +43,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo small</a>
+            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-music"/></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+                <c:forEach items="${categories}" var="category">
+                    <li>
+                        <a href="<spring:url value="/products/${category.restKey}"/>">${category.name}</a>
+                    </li>
+                </c:forEach>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -67,19 +63,8 @@
 <!-- Page Content -->
 <div class="container">
 
-
     <p class="lead">Raisin Web Store logo big</p>
     <br><br><br><br><br><br>
-
-    <div class="row">  <%--TODO <ul></ul>?--%>
-        <div class="col-md-12" style="margin-bottom: 20px;">
-            <c:forEach items="${categories}" var="category">
-                <div class="col-md-2 cat-button col-sm-2">
-                    <a href="<spring:url value="/products/${category.restKey}"/>">${category.name}</a>
-                </div>
-            </c:forEach>
-        </div>
-    </div>
 
     <c:choose>
         <c:when test="${currentCategory==null}">
@@ -102,8 +87,7 @@
                     <div class="caption">
                         <h3>${product.manufacturer} ${product.name}</h3>
                         <p>$${product.unitPrice}</p>
-                        <p>Available ${product.unitsInStock} units in
-                            stock</p>
+                        <p>Available ${product.unitsInStock} units in stock</p>
                         <p>
                             <a href=" <spring:url value="/products/product?id=${product.productId}" /> "
                                class="btn btn-primary">

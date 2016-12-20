@@ -58,4 +58,10 @@ public class CategoryServiceImpl implements CategoryService {
         logger.debug("Retrieving all categories");
         return categoryRepository.getAllCategories();
     }
+
+    @Override
+    public String getNameByKey(String key) {
+        logger.debug("Retrieving category name");
+        return categoryRepository.getNameByKey(key);
+    }
 }

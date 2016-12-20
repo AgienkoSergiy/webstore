@@ -63,9 +63,20 @@ public class MySQLCategoryRepositoryImpl implements CategoryRepository {
     @Cacheable(value = "categoriesCache")
     @Override
     public List<Category> getAllCategories() {
-        System.out.println("++++++++++++++++++++++++add categories list");
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Category");
         return query.list();
+    }
+
+    @Override
+    public String getNameByKey(String key) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Category where restKey  = :key");
+        query.setParameter("key", key);
+        List<Category> queryList = query.list();
+        if(queryList.isEmpty()){
+            return null;
+        }
+        return queryList.get(0).getName();
     }
 }
