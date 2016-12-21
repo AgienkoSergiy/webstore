@@ -43,7 +43,7 @@
 
         <bean class="com.packt.webstore.interceptor.AuditingInterceptor"/>
 
-        <bean class="com.packt.webstore.interceptor.CategoriesListInterceptor"/>
+        <bean class="com.packt.webstore.interceptor.CommonInfoInterceptor"/>
 
         <bean class="com.packt.webstore.interceptor.PromoCodeInterceptor">
             <property name="promoCode" value="OFF3R"/>

@@ -8,12 +8,22 @@ body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1325px) {
     .navbar-nav > li > a {
         white-space: normal;
         width: 100px;
     }
 }
+.login-wrapper a{
+    float: right;
+    line-height: 20px;
+    position: relative;
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
 
 .slide-image {
     width: 100%;
@@ -28,10 +38,10 @@ body {
     border-radius: 4px;
 }
 
-/*.caption {*/
-    /*height: 130px;*/
-    /*overflow: hidden;*/
-/*}*/
+.caption {
+    height: 140px;
+    overflow: hidden;
+}
 
 .caption h4 {
     white-space: nowrap;
