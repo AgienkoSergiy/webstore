@@ -53,20 +53,16 @@
                         <a href="<spring:url value="/products/${category.restKey}"/>">${category.name}</a>
                     </li>
                 </c:forEach>
+            </ul>
+            <div class="login-wrapper">
                 <sec:authorize access="isAnonymous()">
-                    <li class="left">
-                        <a href="<spring:url value="/login"/>"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
-                    </li>
-                    <li class="navbar-left">
-                        <a href="<spring:url value="/signIn"/>">Sign in</a>
-                    </li>
+                    <a href="<spring:url value="/login"/>"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+                    <a href="<spring:url value="/signIn"/>">Sign in</a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <li class="left">
-                        <a href="<spring:url value="/logout"/>"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
-                    </li>
+                    <a href="<spring:url value="/logout"/>"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
                 </sec:authorize>
-            </ul>
+            </div>
         </div>
         <!-- /.navbar-collapse -->
     </div>
