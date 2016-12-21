@@ -1,11 +1,13 @@
 package com.packt.webstore.domain.repository.impl;
 
 
+import com.packt.webstore.domain.Category;
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.domain.repository.ProductRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -125,4 +127,25 @@ public class MySQLProductRepository implements ProductRepository {
         session.save(product);
     }
 
+    @Cacheable(value = "bestsellersCache")
+    @Override
+    public Map<String, Product> getBestSellers() {
+
+        System.out.println("get bestsellers+++++++++++++++++++++++++++");
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Category");
+        List<Category> categories = query.list();
+
+        List<Product> products;
+        Product product;
+        Map<String,Product> bestsellers=new HashMap<>();
+        Random randomizer = new Random(); //TODO temporary random filling bestsellers
+
+        for(Category category:categories){
+            products = getProductsByCategory(category.getRestKey());
+            product = products.get(randomizer.nextInt(products.size()));
+            bestsellers.put(category.getName(),product);
+        }
+        return bestsellers;
+    }
 }

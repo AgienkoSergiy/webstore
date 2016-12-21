@@ -16,10 +16,14 @@ import java.util.Map;
 @Transactional
 public class ProductServiceImpl implements ProductService{
 
-    protected static Logger logger = Logger.getLogger("Product_service");
+    private static Logger logger = Logger.getLogger("Product_service");
+
+    private ProductRepository productRepository;
 
     @Autowired
-    private ProductRepository productRepository;
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public List<Product> getAllProducts() {
@@ -68,5 +72,11 @@ public class ProductServiceImpl implements ProductService{
 
         logger.debug("Adding new product");
         productRepository.addProduct(product);
+    }
+
+    @Override
+    public Map<String, Product> getBestSellers() {
+        logger.debug("Retrieving new bestsellers");
+        return productRepository.getBestSellers();
     }
 }

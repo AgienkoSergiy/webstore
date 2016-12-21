@@ -16,7 +16,7 @@
 <section class="container" ng-app="cartApp">
     <div class="row">
         <div class="col-md-5">
-            <img src="<c:url  value="/resources/images/${product.productId}.png"> </c:url>"
+            <img src="<c:url  value="/resources/images/${product.productId}.jpg"> </c:url>"
                  alt="image" style = "width:100%"/>
         </div>
         <div class="col-md-5">

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.packt.webstore.domain.Order;
 import com.packt.webstore.domain.repository.OrderRepository;
 
-
+@Deprecated
 public class InMemoryOrderRepositoryImpl {
 
 	private Map<Long, Order> listOfOrders;

@@ -15,4 +15,5 @@ public interface ProductRepository {
     List<Product> getProductsByManufacturer(String manufacturer);
     List<Product> getProductsByPriceFilter(Map<String, List<String>> priceRange);
     void addProduct(Product product);
+    Map<String,Product> getBestSellers();
 }

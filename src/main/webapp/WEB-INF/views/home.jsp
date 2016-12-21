@@ -107,7 +107,7 @@
                 <div class="col-sm-4 col-md-4 col-lg-4"  style="padding-bottom:15px">
                     <h3 class="lead">${entry.key}</h3>
                     <div class="thumbnail">
-                        <img src="<c:url value="/resources/images/${entry.value.productId}.png"/>"
+                        <img src="<c:url value="/resources/images/${entry.value.productId}.jpg"/>"
                              alt="image" style = "width:100%"/>
                         <div class="caption">
                             <h3>${entry.value.manufacturer} ${entry.value.name}</h3>

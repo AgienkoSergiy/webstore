@@ -82,7 +82,7 @@
             </c:if>
             <div class="col-sm-4 col-md-4 col-lg-4"  style="padding-bottom:15px">
                 <div class="thumbnail">
-                    <img src="<c:url value="/resources/images/${product.productId}.png"/>"
+                    <img src="<c:url value="/resources/images/${product.productId}.jpg"/>"
                          alt="image" style = "width:100%"/>
                     <div class="caption">
                         <h3>${product.manufacturer} ${product.name}</h3>
