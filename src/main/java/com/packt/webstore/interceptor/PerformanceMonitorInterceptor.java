@@ -3,10 +3,17 @@ package com.packt.webstore.interceptor;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.packt.webstore.service.CustomerService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StopWatch;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +22,10 @@ public class PerformanceMonitorInterceptor implements HandlerInterceptor {
 
     ThreadLocal<StopWatch> stopWatchLocal = new ThreadLocal<StopWatch>();
     Logger logger = Logger.getLogger(this.getClass());
+
+    //TODO temporary
+    @Autowired
+    CustomerService customerService;
 
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
@@ -25,6 +36,12 @@ public class PerformanceMonitorInterceptor implements HandlerInterceptor {
         stopWatchLocal.set(stopWatch);
         logger.info("Accessing URL path: " + getURLPath(request));
         logger.info("Request processing started on: " + getCurrentTime());
+        Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        ArrayList<SimpleGrantedAuthority> authList = new ArrayList<>(authorities);
+        for(SimpleGrantedAuthority aut:authList){
+            logger.info("Current user: " + aut.toString());
+        }
+
         return true;
     }
 

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class CategoriesListInterceptor extends HandlerInterceptorAdapter {
+public class CommonInfoInterceptor extends HandlerInterceptorAdapter { //adds common information which is used at most pages
 
     private CategoryService categoryService;
 

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 
 <!DOCTYPE html>
@@ -36,7 +37,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-music"/></a>
+            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-music"></span></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -46,6 +47,20 @@
                         <a href="<spring:url value="/products/${category.restKey}"/>">${category.name}</a>
                     </li>
                 </c:forEach>
+                <sec:authorize ifAnyGranted="ROLE_ANONYMOUS">
+                    <li class="left">
+                        <a href="<spring:url value="/login"/>"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+                    </li>
+                    <li class="navbar-left">
+                        <a href="<spring:url value="/signIn"/>">Sign in</a>
+                    </li>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_USER','ROLE_ADMIN')">
+                    <li class="left">
+                        <a href="<spring:url value="/logout"/>"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+                    </li>
+                </sec:authorize>
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +53,19 @@
                         <a href="<spring:url value="/products/${category.restKey}"/>">${category.name}</a>
                     </li>
                 </c:forEach>
+                <sec:authorize access="isAnonymous()">
+                    <li class="left">
+                        <a href="<spring:url value="/login"/>"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+                    </li>
+                    <li class="navbar-left">
+                        <a href="<spring:url value="/signIn"/>">Sign in</a>
+                    </li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <li class="left">
+                        <a href="<spring:url value="/logout"/>"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+                    </li>
+                </sec:authorize>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
