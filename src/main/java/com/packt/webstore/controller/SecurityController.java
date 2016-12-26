@@ -16,7 +16,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
-@Path(value = "/testing")
+
 @Controller
 public class SecurityController {
 
@@ -66,6 +66,7 @@ public class SecurityController {
     }
 
 
+    @Path(value = "/testing")
     @POST
     public String test(@FormParam("username") String name, @FormParam("password") String pass,
                        @FormParam("type") String type, @FormParam("age") String age){

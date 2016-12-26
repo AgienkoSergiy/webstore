@@ -10,25 +10,27 @@
 <head>
     <meta http-equiv="Content-Type" content=
             "text/html; charset=ISO-8859-1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/controllers.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <title>TEST</title>
 </head>
 <body>
 <br><br><br><br><br><br><br>
-<div class="container">
+<div class="container" ng-app="cartApp">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Please sign in</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" ng-controller="cartCtrl">
                     <%--<c:if test="${not empty error}">--%>
                         <%--<div class="alert alert-danger">--%>
                             <%--<spring:message code="AbstractUserDetailsAuthenticationProvider.badCredentials"/><br />--%>
                         <%--</div>--%>
                     <%--</c:if>--%>
-                    <form action="http://localhost:8080/webstore/testing"  method="post">
+                    <form  >
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" placeholder="User email"
@@ -47,7 +49,7 @@
                                        type="text" value="">
                             </div>
                             <input class="btn btn-lg btn-success btn-block"
-                                   type="submit" value="Send">
+                                   type="submit" ng-click="queryToMatrix()" value="Send">
                         </fieldset>
                     </form>
                 </div>
@@ -55,5 +57,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

@@ -29,4 +29,26 @@ cartApp.controller('cartCtrl', function ($scope, $http) {
                 $scope.refreshCart($http.get('/webstore/rest/cart/get/cartId'/*+$scope.cartId*/));
             });
     };
+
+    $scope.getMatrixRequest = function () {
+        var query = window.location.search.substring(1);
+        alert(query);
+        var result = '/webstore/products/byCriteria/';
+        var vars = query.split('&');
+        for (var i = 0; i < vars.length; i++) {
+            result+=vars[i];
+        }
+        alert(result);
+        console.log('Query variable %s not found', result);
+        return result;
+
+    };
+    $scope.queryToMatrix= function () {
+        var fields = $( 'form' ).serializeArray();
+        var result = '/webstore/products/byCriteria/';
+        jQuery.each( fields, function( i, field ) {
+            result.append( field.key + "=" + field.value + ";");
+        });
+        alert(result);
+    }
 });
