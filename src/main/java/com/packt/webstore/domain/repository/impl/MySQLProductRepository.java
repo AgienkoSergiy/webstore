@@ -22,6 +22,23 @@ public class MySQLProductRepository implements ProductRepository {
     private SessionFactory sessionFactory;
 
     @Override
+    public void saveProduct(Product product) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Product existingProduct =
+                (Product)session.get(Product.class,product.getProductId());
+
+        existingProduct.setName(product.getName());
+        existingProduct.setCategory(product.getCategory());
+        existingProduct.setDescription(product.getDescription());
+        existingProduct.setManufacturer(product.getManufacturer());
+        existingProduct.setUnitPrice(product.getUnitPrice());
+        existingProduct.setUnitsInStock(product.getUnitsInStock());
+
+        session.save(existingProduct);
+    }
+
+    @Override
     public List<Product> getAllProducts() {
 
         Session session = sessionFactory.getCurrentSession();
@@ -147,5 +164,16 @@ public class MySQLProductRepository implements ProductRepository {
             bestsellers.put(category.getName(),product);
         }
         return bestsellers;
+    }
+
+    @Override
+    public void updateUnitsInStock(Product product) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Product existingProduct =
+                (Product)session.get(Product.class,product.getProductId());
+        existingProduct.setUnitsInStock(product.getUnitsInStock());
+
+        session.save(existingProduct);
     }
 }

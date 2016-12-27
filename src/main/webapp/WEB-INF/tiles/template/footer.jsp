@@ -1,1 +1,1 @@
-<p>&copy; Seeryoga the best 2016</p>
+<p>&copy; The Footer 2016</p>

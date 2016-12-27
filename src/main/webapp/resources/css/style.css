@@ -13,7 +13,33 @@ body {
         white-space: normal;
         width: 100px;
     }
+    .thumbnail{
+        height:350px;
+    }
 }
+
+.helper {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.img-wrapper img{
+    max-height: 150px;
+    max-width: 95%;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+}
+
+
+
+.img-wrapper{
+    height: 150px;
+    text-align: center;
+}
+
 .login-wrapper a{
     float: right;
     line-height: 20px;
@@ -39,7 +65,7 @@ body {
 }
 
 .caption {
-    height: 140px;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -47,9 +73,9 @@ body {
     white-space: nowrap;
 }
 
-.thumbnail img {
-    width: 100%;
-}
+/*.thumbnail img {*/
+    /*width: 100%;*/
+/*}*/
 
 .ratings {
     padding-right: 10px;

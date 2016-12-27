@@ -79,4 +79,16 @@ public class ProductServiceImpl implements ProductService{
         logger.debug("Retrieving new bestsellers");
         return productRepository.getBestSellers();
     }
+
+    @Override
+    public void updateUnitsInStock(Product product) {
+        logger.debug("Updating items quantity");
+        productRepository.updateUnitsInStock(product);
+    }
+
+    @Override
+    public void saveProduct(Product product) {
+        logger.debug("Saving product");
+        productRepository.saveProduct(product);
+    }
 }

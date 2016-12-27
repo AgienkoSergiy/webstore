@@ -17,4 +17,6 @@ public interface ProductService {
     List<Product> getProductByManufacturer(String manufacturer);
     void addProduct(Product product);
     Map<String,Product> getBestSellers();
+    void updateUnitsInStock(Product product);
+    void saveProduct(Product product);
 }

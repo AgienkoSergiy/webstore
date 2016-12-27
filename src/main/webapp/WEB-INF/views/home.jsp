@@ -43,7 +43,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-music"/></a>
+            <a class="navbar-brand" href="<spring:url value="/"/>"><span class="glyphicon glyphicon-music"></span></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -117,8 +117,11 @@
                 <div class="col-sm-4 col-md-4 col-lg-4"  style="padding-bottom:15px">
                     <h3 class="lead">${entry.key}</h3>
                     <div class="thumbnail">
-                        <img src="<c:url value="/resources/images/${entry.value.productId}.jpg"/>"
-                             alt="image" style = "width:100%"/>
+                        <div class="img-wrapper">
+                            <span class="helper"></span>
+                            <img src="<c:url value="/resources/images/${entry.value.productId}.jpg"/>"
+                                 alt="image"/>
+                        </div>
                         <div class="caption">
                             <h3>${entry.value.manufacturer} ${entry.value.name}</h3>
                             <p>$${entry.value.unitPrice}</p>

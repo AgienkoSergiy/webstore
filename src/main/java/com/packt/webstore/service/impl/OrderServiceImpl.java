@@ -33,9 +33,25 @@ public class OrderServiceImpl implements OrderService{
         }
 
         productById.setUnitsInStock(productById.getUnitsInStock() - quantity);
+        productRepository.updateUnitsInStock(productById);
+    }
+
+    public void processOrder(Order order) {
+
+        for(Product product:order.getCart().getCartItems()) // TODO continue here 27.12.2016
+        Product productById = productRepository.getProductById(productId);
+
+        if(productById.getUnitsInStock() < quantity){
+            throw new IllegalArgumentException("Out of Stock. Available Units in stock"+ productById.getUnitsInStock());
+        }
+
+        productById.setUnitsInStock(productById.getUnitsInStock() - quantity);
+        productRepository.updateUnitsInStock(productById);
     }
 
     public Long saveOrder(Order order) {
+
+
         Long orderId = orderRepository.saveOrder(order);
         return orderId;
     }
