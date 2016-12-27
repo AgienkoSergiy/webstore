@@ -35,8 +35,8 @@
 	</view-state>
 	
 	<action-state id="processOrder">
-		<evaluate expression="orderServiceImpl.processOrder(order)"/>
-		<evaluate expression="orderServiceImpl.saveOrder(order)" result="order.orderId"/>
+		<evaluate expression="orderServiceImpl.processOrder(order)" result="order.orderId"/>
+		<!--<transition to="InvalidCartWarning"  on-exception="java.lang.IllegalStateException"/>-->
 		<transition to="thankCustomer" />
 	</action-state>
 	

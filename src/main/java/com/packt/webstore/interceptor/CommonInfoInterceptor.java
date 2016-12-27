@@ -1,6 +1,8 @@
 package com.packt.webstore.interceptor;
 
+import com.packt.webstore.domain.Customer;
 import com.packt.webstore.service.CategoryService;
+import com.packt.webstore.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -13,11 +15,18 @@ public class CommonInfoInterceptor extends HandlerInterceptorAdapter { //adds co
 
     private CategoryService categoryService;
 
+    private CustomerService customerService;
+
+
     @Autowired
     public void setCategoryService(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
+    @Autowired
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @Override
     public void postHandle(HttpServletRequest request,
@@ -27,6 +36,12 @@ public class CommonInfoInterceptor extends HandlerInterceptorAdapter { //adds co
             modelAndView.getModelMap().
                     addAttribute("categories",
                             categoryService.getAllCategories());
+            Customer customer = customerService.getCurrentCustomer();
+            if(customer!=null) {
+                modelAndView.getModelMap().
+                        addAttribute("currentUserName",
+                                customer.getName());
+            }
         }
     }
 }

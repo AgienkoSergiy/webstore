@@ -4,7 +4,7 @@ import com.packt.webstore.domain.Order;
 
 public interface OrderService {
 
-    void processOrder(Integer  productId, long quantity);
+    Long processOrder(Order order);
 
     Long saveOrder(Order order);
 }

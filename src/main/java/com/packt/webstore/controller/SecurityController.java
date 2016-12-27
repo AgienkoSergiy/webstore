@@ -42,6 +42,7 @@ public class SecurityController {
     }
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logout() {
+
         return "login";
     }
 

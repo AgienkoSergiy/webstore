@@ -5,20 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
-<section>
-    <div>
-        <a href="<c:url value="/logout"/>"
-           class="btn btn-danger btn-mini pull-right">logout</a>
-        <div class="pull-right" style="padding-right:50px">
-            <a href="?language=en">English</a>|<a href="?language=nl">Dutch</a>
-        </div>
-        <div class="container">
-            <h1>Sign in</h1>
-        </div>
-    </div>
-</section>
-
-
 <section class="container">
     <form:form modelAttribute="newCustomer" class="form-horizontal" enctype="multipart/form-data">
         <form:errors path="*" cssClass="alert alert-danger" element="div"/>

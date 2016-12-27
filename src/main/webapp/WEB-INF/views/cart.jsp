@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<section class="container" ng-app="cartApp">
+<section class="container" ng-app="cartApp" style="height:100vh;">
     <br><br><br><br><br><br><br>
     <div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')">
         <div>

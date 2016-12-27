@@ -13,12 +13,13 @@
 
     <title><tiles:insertAttribute name="title" /></title>
 
+    <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css"	rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
 
-    <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css"	rel="stylesheet">
+
 
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -28,6 +29,7 @@
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -50,11 +52,12 @@
             </ul>
             <div class="login-wrapper">
                 <sec:authorize access="isAnonymous()">
-                        <a href="<spring:url value="/login"/>"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
-                        <a href="<spring:url value="/signIn"/>">Sign in</a>
+                    <a href="<spring:url value="/signIn"/>">Sign in</a>
+                    <a href="<spring:url value="/login"/>"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                        <a href="<spring:url value="/logout"/>"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+                    <a href="<spring:url value="/logout"/>"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+                    <a href="#"> <span class="glyphicon glyphicon-user"></span> ${currentUserName}</a> <%--TODO add personal cabinet sprint#2--%>
                 </sec:authorize>
             </div>
         </div>
@@ -71,10 +74,10 @@
         <tiles:insertAttribute name="content" />
     </div>
 
-    <div class="footer">
-        <tiles:insertAttribute name="footer" />
-    </div>
-
 </div>
+<!-- Footer -->
+<footer style="background-color: #222; border-color: #080808;">
+    <tiles:insertAttribute name="footer" />
+</footer>
 </body>
 </html>

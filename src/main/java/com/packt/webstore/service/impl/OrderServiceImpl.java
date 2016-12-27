@@ -15,14 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class OrderServiceImpl implements OrderService{
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    private final OrderRepository orderRepository;
 
     @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private CartService cartService;
+    public OrderServiceImpl(ProductRepository productRepository, OrderRepository orderRepository) {
+        this.productRepository = productRepository;
+        this.orderRepository = orderRepository;
+    }
 
 
     public void processOrder(Integer productId, long quantity) {
@@ -36,24 +37,25 @@ public class OrderServiceImpl implements OrderService{
         productRepository.updateUnitsInStock(productById);
     }
 
-    public void processOrder(Order order) {
+    public Long processOrder(Order order) { //TODO check capability to buy during adding product to cart action
 
-        for(Product product:order.getCart().getCartItems()) // TODO continue here 27.12.2016
-        Product productById = productRepository.getProductById(productId);
+        for(Product product:order.getCart().getCartItems().keySet()) {
 
-        if(productById.getUnitsInStock() < quantity){
-            throw new IllegalArgumentException("Out of Stock. Available Units in stock"+ productById.getUnitsInStock());
+            Product productById = productRepository.getProductById(product.getProductId());
+            Integer quantity = order.getCart().getCartItems().get(productById).getQuantity();
+
+            if(productById.getUnitsInStock() < quantity){
+                throw new IllegalArgumentException("Out of Stock. Available Units in stock"+ productById.getUnitsInStock());
+            }
+
+            productById.setUnitsInStock(productById.getUnitsInStock() - quantity);
+            productRepository.updateUnitsInStock(productById);
         }
-
-        productById.setUnitsInStock(productById.getUnitsInStock() - quantity);
-        productRepository.updateUnitsInStock(productById);
+        return saveOrder(order);
     }
 
     public Long saveOrder(Order order) {
-
-
-        Long orderId = orderRepository.saveOrder(order);
-        return orderId;
+        return orderRepository.saveOrder(order);
     }
 
 }

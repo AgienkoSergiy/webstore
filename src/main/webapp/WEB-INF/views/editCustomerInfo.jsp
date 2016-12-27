@@ -7,11 +7,6 @@
 
 <section>
     <div>
-        <a href="<c:url value="/j_spring_security_logout"/>"
-           class="btn btn-danger btn-mini pull-right">logout</a>
-        <div class="pull-right" style="padding-right:50px">
-            <a href="?language=en">English</a>|<a href="?language=nl">Dutch</a>
-        </div>
         <div class="container">
             <h1>Sign in</h1>
         </div>

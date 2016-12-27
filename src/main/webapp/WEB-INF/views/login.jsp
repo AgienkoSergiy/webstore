@@ -4,20 +4,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<!--todo delete needless comments-->
 
 <html>
 <head>
     <meta http-equiv="Content-Type" content=
             "text/html; charset=ISO-8859-1">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <title>Products</title>
 </head>
 <body>
 <br><br><br><br><br><br><br>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-4 col-md-offset-4" style="height:100vh;">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Please sign in</h3>

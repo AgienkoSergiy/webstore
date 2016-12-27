@@ -6,6 +6,7 @@
 
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-bottom: 0;
 }
 
 @media (max-width: 1325px) {
@@ -14,7 +15,7 @@ body {
         width: 100px;
     }
     .thumbnail{
-        height:350px;
+        height:400px;
     }
 }
 
@@ -24,7 +25,7 @@ body {
 }
 
 .img-wrapper img{
-    max-height: 150px;
+    max-height: 250px;
     max-width: 95%;
     text-align: center;
     display: block;
@@ -33,10 +34,8 @@ body {
     vertical-align: middle;
 }
 
-
-
 .img-wrapper{
-    height: 150px;
+    height: 250px;
     text-align: center;
 }
 
@@ -49,7 +48,6 @@ body {
     text-decoration: none;
     font-size: 18px;
 }
-
 
 .slide-image {
     width: 100%;
@@ -73,9 +71,6 @@ body {
     white-space: nowrap;
 }
 
-/*.thumbnail img {*/
-    /*width: 100%;*/
-/*}*/
 
 .ratings {
     padding-right: 10px;
@@ -104,5 +99,5 @@ body {
 }
 
 footer {
-    margin: 50px 0;
+    margin-top: 50px;
 }
