@@ -9,7 +9,7 @@
 
     <div class="row">
 
-        <p class="lead">Raisin Web Store logo big</p>
+        <p class="text-center">Raisin Web Store logo big</p>
         <br><br><br><br><br><br>
 
         <div class="row carousel-holder">
@@ -43,7 +43,7 @@
 
             </div>
 
-        <h2 class="lead">Best Sellers</h2>
+        <h1 class="text-center">Best Sellers</h1>
         <section id="bestsellers">
             <c:forEach items="${bestsellers}" var="entry" varStatus="rowCounter">
                 <c:if test="${rowCounter.count % 3 == 1|| rowCounter.count==1}">

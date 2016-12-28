@@ -1,8 +1,15 @@
 package com.packt.webstore.domain;
 
 
+import com.packt.webstore.validator.PasswordMatches;
+import com.packt.webstore.validator.ValidEmail;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
+@PasswordMatches
 @Entity
 @Table(name = "USER")
 public class Customer implements Serializable {
@@ -15,16 +22,31 @@ public class Customer implements Serializable {
     @Column(name = "ID")
     @GeneratedValue
     private Integer customerId;
+
+    @NotNull
+    @NotEmpty
     @Column(name = "NAME")
     private String name;
+
     @Embedded
     private Address billingAddress;
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
+
+    @NotNull
+    @NotEmpty
+    @ValidEmail
     @Column(name = "EMAIL", unique = true)
     private String email;
+
     @Column(name = "PASSWORD")
     private String password;
+
+    @NotNull
+    @NotEmpty
+    @Transient
+    private String matchingPassword;
+
     @Column(name = "ROLE")
     private String role;
     @Column(name = "ENABLED")
@@ -95,6 +117,14 @@ public class Customer implements Serializable {
         this.password = password;
     }
 
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
+    }
+
     public String getRole() {
         return role;
     }
@@ -128,6 +158,9 @@ public class Customer implements Serializable {
 
     @Override
     public int hashCode() {
+        if(getCustomerId()==null){
+            return 0;
+        }
         int result = getCustomerId().hashCode();
         result = 31 * result + getName().hashCode();
         result = 31 * result + getBillingAddress().hashCode();

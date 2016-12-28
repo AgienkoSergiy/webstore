@@ -1,26 +1,35 @@
 package com.packt.webstore.controller;
 import com.packt.webstore.domain.Customer;
+import com.packt.webstore.exception.EmailExistsException;
 import com.packt.webstore.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.validation.Valid;
 
 
 @Controller
 public class SecurityController {
 
     private CustomerService customerService;
+    @Autowired
+    UserDetailsService userDetailsService;
 
     @Autowired
     public void setCustomerService(CustomerService customerService) {
@@ -30,7 +39,7 @@ public class SecurityController {
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public String login(HttpSession session) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName(); //get logged in username
+        String email = auth.getName();
         session.setAttribute("email",email);
         return "login";
     }
@@ -54,38 +63,54 @@ public class SecurityController {
     }
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
-    public String signIn(@ModelAttribute("newCustomer") Customer customer){
+    public String signIn(@ModelAttribute("newCustomer") @Valid Customer customer,
+                         BindingResult result, HttpServletRequest request){
 
-        customerService.addCustomer(customer);
-        return "redirect:/home"; //TODO improve sign in mechanism (redirect to previous page)
+        if(!customerService.emailAvailable(customer.getEmail())){
+            result.addError(new ObjectError("emailUnavailable","This e-mail is already in use"));
+        }
+        if(result.hasErrors()|| createCustomerAccount(customer)==null) {
+            return "signIn";
+        }
+
+
+        autoLogin(customer.getEmail(),customer.getPassword(),request);
+
+        return "redirect:/";
     }
 
 
-    @RequestMapping(value = "/test")
-    public String getTest(){
-        return "/test";
+    @Autowired
+    @Qualifier("authenticationManager")
+    private AuthenticationManager authManager;
+
+
+
+
+
+
+    public boolean autoLogin( String username, String password, HttpServletRequest request) {
+
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+
+        Authentication authentication = authManager.authenticate(token);
+
+        SecurityContextHolder.getContext().setAuthentication(authentication );
+
+        //this step is important, otherwise the new login is not in session which is required by Spring Security
+        request.getSession().setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
+
+
+        return true;
     }
 
-
-    @Path(value = "/testing")
-    @POST
-    public String test(@FormParam("username") String name, @FormParam("password") String pass,
-                       @FormParam("type") String type, @FormParam("age") String age){
-        String request = "/test";
-        if(name!=null){
-            request+=(";name="+name);
+    private Customer createCustomerAccount(Customer customer){
+        try {
+            customerService.addCustomer(customer);
         }
-        if (pass!=null){
-            request+=(";pass="+pass);
+        catch(EmailExistsException ex){
+            return null;
         }
-        if (type!=null){
-            request+=(";type="+type);
-        }
-        if (age!=null){
-            request+=(";age="+age);
-        }
-
-        return request;
+        return customer;
     }
-
 }

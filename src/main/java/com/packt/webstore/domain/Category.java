@@ -65,5 +65,4 @@ public class Category implements Serializable {
         this.products = products;
     }
 
-    //TODO add subcategories in Sprint#2
 }

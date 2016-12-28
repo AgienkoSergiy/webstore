@@ -50,8 +50,6 @@ public class Product implements Serializable {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    //TODO add Map<String, String> characteristics sprint#2
-
     @Column(name = "UNITS_IN_STOCK")
     private long unitsInStock;
 

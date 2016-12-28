@@ -1,15 +1,19 @@
 package com.packt.webstore.controller;
 
 import com.packt.webstore.domain.Customer;
+import com.packt.webstore.exception.EmailExistsException;
 import com.packt.webstore.service.CustomerService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.Valid;
 
 @Controller
 public class CustomerController {
@@ -43,13 +47,15 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customers/add", method = RequestMethod.POST)
-    public String addCustomer(@ModelAttribute("newCustomer") Customer customer){
+    public String addCustomer(@ModelAttribute("newCustomer") @Valid Customer customer,
+                              BindingResult result){
 
         logger.debug("Received request to add new customer");
+        if(result.hasErrors() || createCustomerAccount(customer)==null) {
+            return "signIn";
+        }
 
-        customerService.addCustomer(customer);
-
-        return "redirect:/customers";
+        return "redirect:/";
     }
 
 
@@ -88,6 +94,16 @@ public class CustomerController {
         model.addAttribute("id", id);
 
         return "redirect:/customers";
+    }
+
+    private Customer createCustomerAccount(Customer customer){
+        try {
+            customerService.addCustomer(customer);
+        }
+        catch(EmailExistsException ex){
+            return null;
+        }
+        return customer;
     }
 
 }

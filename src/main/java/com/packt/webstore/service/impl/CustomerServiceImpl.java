@@ -2,6 +2,7 @@ package com.packt.webstore.service.impl;
 
 import com.packt.webstore.domain.Customer;
 import com.packt.webstore.domain.repository.CustomerRepository;
+import com.packt.webstore.exception.EmailExistsException;
 import com.packt.webstore.service.CustomerService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void addCustomer(Customer customer) {
-
+    public void addCustomer(Customer customer) throws EmailExistsException {
         logger.debug("Adding new customer");
+        if(!customerRepository.emailAvailable(customer.getEmail())){
+            throw new EmailExistsException();
+        }
         customerRepository.addCustomer(customer);
     }
 
