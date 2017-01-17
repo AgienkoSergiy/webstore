@@ -14,26 +14,34 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CartServiceImpl implements CartService {
 
-    @Autowired
+
     private CartRepository cartRepository;
 
-    @Autowired
     private CartItemRepository cartItemRepository;  //TODO test&remake cart operations in private cabinet (Sprint#3)
+
+    @Autowired
+    public void setCartRepository(CartRepository cartRepository) {
+        this.cartRepository = cartRepository;
+    }
+    @Autowired
+    public void setCartItemRepository(CartItemRepository cartItemRepository) {
+        this.cartItemRepository = cartItemRepository;
+    }
 
     public Cart create(Cart cart) {
         return cartRepository.create(cart);
     }
-    public Cart read(String cartId) {
 
-        Cart cart = cartRepository.read(cartId);
-        return cart;
+    public Cart read(String cartId) {
+        return cartRepository.read(cartId);
     }
+
     public void update(String cartId, Cart cart) {
         cartRepository.update(cartId, cart);
     }
+
     public void delete(String cartId) {
         cartRepository.delete(cartId);
-
     }
 
     public Cart validate(String cartId) {
@@ -41,7 +49,6 @@ public class CartServiceImpl implements CartService {
         if(cart==null || cart.getCartItems().size()==0) {
             throw new InvalidCartException(cartId);
         }
-
         return cart;
     }
 }

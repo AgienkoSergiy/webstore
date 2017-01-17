@@ -13,7 +13,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class AuditingInterceptor
         extends HandlerInterceptorAdapter {
 
-    Logger logger = Logger.getLogger("auditLogger");
+    private Logger logger = Logger.getLogger("auditLogger");
     private String user;
     private String productName;
     public boolean preHandle(HttpServletRequest request,

@@ -18,10 +18,14 @@ import java.util.List;
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
 
-    protected static Logger logger = Logger.getLogger("Customer_service");
+    private static Logger logger = Logger.getLogger("Customer_service");
+
+    private CustomerRepository customerRepository;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    public void setCustomerRepository(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @Override
     public List<Customer> getAllCustomers() {

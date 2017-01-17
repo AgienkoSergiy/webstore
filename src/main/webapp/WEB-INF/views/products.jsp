@@ -10,8 +10,8 @@
 <!-- Page Content -->
 <div class="container">
 
-    <p class="lead">Raisin Web Store logo big</p>
-    <br><br><br><br><br><br>
+    <h1 class="text-center">Musical Web Store logo</h1>
+    <br><br>
 
     <c:choose>
         <c:when test="${currentCategory==null}">

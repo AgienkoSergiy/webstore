@@ -13,8 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class PerformanceMonitorInterceptor implements HandlerInterceptor {
 
-    ThreadLocal<StopWatch> stopWatchLocal = new ThreadLocal<StopWatch>();
-    Logger logger = Logger.getLogger(this.getClass());
+    private ThreadLocal<StopWatch> stopWatchLocal = new ThreadLocal<>();
+    private Logger logger = Logger.getLogger(this.getClass());
 
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,

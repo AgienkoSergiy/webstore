@@ -15,13 +15,17 @@ import java.util.List;
 @Component
 public class CategoryValidator implements ConstraintValidator<CategoryValidated, Category> {
 
-    @Autowired
     private CategoryService categoryService;
 
     private List<String> allowedCategories;
 
     public CategoryValidator() {
         allowedCategories=new ArrayList<>();
+    }
+
+    @Autowired
+    public void setCategoryService(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     @PostConstruct

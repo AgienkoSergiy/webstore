@@ -9,8 +9,8 @@
 
     <div class="row">
 
-        <p class="text-center">Raisin Web Store logo big</p>
-        <br><br><br><br><br><br>
+        <h1 class="text-center">Musical Web Store logo</h1>
+        <br><br>
 
         <div class="row carousel-holder">
 

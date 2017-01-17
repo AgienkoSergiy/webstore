@@ -28,12 +28,24 @@ import javax.validation.Valid;
 public class SecurityController {
 
     private CustomerService customerService;
-    @Autowired
-    UserDetailsService userDetailsService;
+
+    private UserDetailsService userDetailsService;
+
+    @Qualifier("authenticationManager")
+    private AuthenticationManager authManager;
 
     @Autowired
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
+    }
+
+    @Autowired
+    public void setUserDetailsService(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+    @Autowired
+    public void setAuthManager(AuthenticationManager authManager) {
+        this.authManager = authManager;
     }
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
@@ -80,16 +92,9 @@ public class SecurityController {
     }
 
 
-    @Autowired
-    @Qualifier("authenticationManager")
-    private AuthenticationManager authManager;
 
 
-
-
-
-
-    public boolean autoLogin( String username, String password, HttpServletRequest request) {
+    private boolean autoLogin( String username, String password, HttpServletRequest request) {
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
 

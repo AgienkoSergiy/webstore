@@ -17,10 +17,14 @@ import java.util.List;
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
 
-    protected static Logger logger = Logger.getLogger("Category_service"); //TODO read about logging
+    private static Logger logger = Logger.getLogger("Category_service"); //TODO read about logging
+
+    private CategoryRepository categoryRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    public void setCategoryRepository(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Override
     public Category create(Category category) {
